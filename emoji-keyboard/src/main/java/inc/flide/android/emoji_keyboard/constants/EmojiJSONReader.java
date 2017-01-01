@@ -9,9 +9,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
-import inc.flide.eightvim.structures.Emoji;
-import inc.flide.eightvim.structures.EmojiCategory;
-
 /*
 {
     "grinning":

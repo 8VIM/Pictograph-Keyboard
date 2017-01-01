@@ -2,22 +2,26 @@ package inc.flide.android.emoji_keyboard.view;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.LinearLayout;
 
 import com.astuetz.PagerSlidingTabStrip;
 
-
 import inc.flide.android.emoji_keyboard.EmojiKeyboardService;
 import inc.flide.android.emoji_keyboard.R;
 import inc.flide.android.emoji_keyboard.adapter.EmojiPagerAdapter;
+import inc.flide.android.emoji_keyboard.constants.Constants;
 
 
 public class EmojiKeyboardView extends View implements SharedPreferences.OnSharedPreferenceChangeListener{
@@ -25,6 +29,8 @@ public class EmojiKeyboardView extends View implements SharedPreferences.OnShare
     private ViewPager viewPager;
     private PagerSlidingTabStrip pagerSlidingTabStrip;
     private LinearLayout layout;
+
+    Button deleteButton;
 
     private EmojiPagerAdapter emojiPagerAdapter;
     private EmojiKeyboardService emojiKeyboardService;
@@ -50,7 +56,7 @@ public class EmojiKeyboardView extends View implements SharedPreferences.OnShare
 
         LayoutInflater inflater = (LayoutInflater)   getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        layout = (LinearLayout) inflater.inflate(R.layout.keyboard_main, null);
+        layout = (LinearLayout) inflater.inflate(R.layout.emoji_keyboard_view, null);
 
         viewPager = (ViewPager) layout.findViewById(R.id.emojiKeyboard);
 
@@ -63,10 +69,11 @@ public class EmojiKeyboardView extends View implements SharedPreferences.OnShare
         viewPager.setAdapter(emojiPagerAdapter);
 
         setupDeleteButton();
+        setupKeyboardButton();
 
         pagerSlidingTabStrip.setViewPager(viewPager);
 
-        viewPager.setCurrentItem(1);
+        viewPager.setCurrentItem(0);
 
         PreferenceManager.getDefaultSharedPreferences(context).registerOnSharedPreferenceChangeListener(this);
     }
@@ -82,32 +89,54 @@ public class EmojiKeyboardView extends View implements SharedPreferences.OnShare
 
     private void setupDeleteButton() {
 
-        Button delete = (Button) layout.findViewById(R.id.deleteButton);
+        deleteButton = (Button) layout.findViewById(R.id.deleteButton);
 
-        delete.setOnClickListener(new View.OnClickListener() {
+        deleteButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 emojiKeyboardService.sendDownAndUpKeyEvent(KeyEvent.KEYCODE_DEL, 0);
             }
         });
 
-        delete.setOnLongClickListener(new View.OnLongClickListener() {
+        deleteButton.setOnLongClickListener(new OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                emojiKeyboardService.switchToPreviousInputMethod();
-                return false;
+                longDeleteButtonPressHandler.postDelayed(longDeleteButtonPressRunnable, Constants.DELAY_MILLIS_LONG_PRESS_CONTINUATION);
+                return true;
             }
         });
     }
 
+    private final Handler longDeleteButtonPressHandler = new Handler();
+    private Runnable longDeleteButtonPressRunnable = new Runnable() {
+        @Override
+        public void run() {
+            emojiKeyboardService.sendDownAndUpKeyEvent(KeyEvent.KEYCODE_DEL, 0);
+            if(deleteButton.isPressed()) {
+                longDeleteButtonPressHandler.postDelayed(this, Constants.DELAY_MILLIS_LONG_PRESS_CONTINUATION);
+            }
+        }
+    };
+
+    private void setupKeyboardButton() {
+
+        Button keyboardButton = (Button) layout.findViewById(R.id.switchToKeyboard);
+
+        keyboardButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                emojiKeyboardService.switchToPreviousInputMethod();
+            }
+        });
+    }
 
     private int width;
     private int height;
     @Override
     public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 
-        width = View.MeasureSpec.getSize(widthMeasureSpec);
-        height = View.MeasureSpec.getSize(heightMeasureSpec);
+        width = MeasureSpec.getSize(widthMeasureSpec);
+        height = MeasureSpec.getSize(heightMeasureSpec);
 
         Log.d("emojiKeyboardView", width +" : " + height);
         setMeasuredDimension(width, height);
@@ -121,6 +150,28 @@ public class EmojiKeyboardView extends View implements SharedPreferences.OnShare
             emojiPagerAdapter = new EmojiPagerAdapter(getContext(), viewPager, height);
             viewPager.setAdapter(emojiPagerAdapter);
             this.invalidate();
+        }
+    }
+
+    public static class KeyboardSinglePageView {
+
+        private Context context;
+        private BaseAdapter adapter;
+
+        public KeyboardSinglePageView(Context context, BaseAdapter adapter) {
+            this.context = context;
+            this.adapter = adapter;
+        }
+
+        public View getView() {
+
+            final GridView emojiGrid = new GridView(context);
+
+            emojiGrid.setColumnWidth((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, context.getResources().getDisplayMetrics()));
+            emojiGrid.setNumColumns(GridView.AUTO_FIT);
+
+            emojiGrid.setAdapter(adapter);
+            return emojiGrid;
         }
     }
 }

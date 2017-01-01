@@ -6,16 +6,16 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
+import java.util.List;
+
 import inc.flide.android.emoji_keyboard.EmojiKeyboardService;
 import inc.flide.android.emoji_keyboard.R;
-
-import java.util.ArrayList;
+import inc.flide.android.emoji_keyboard.constants.Emoji;
 
 public abstract class BaseEmojiAdapter extends BaseAdapter {
 
     protected EmojiKeyboardService emojiKeyboardService;
-    protected ArrayList<String> emojiTexts;
-    protected ArrayList<Integer> iconIds;
+    protected List<Emoji> emojiList;
 
     public BaseEmojiAdapter(EmojiKeyboardService emojiKeyboardService ) {
         this.emojiKeyboardService = emojiKeyboardService;
@@ -23,11 +23,12 @@ public abstract class BaseEmojiAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return emojiTexts.size();
+        return emojiList.size();
     }
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
+
         final ImageView imageView;
         if (convertView == null) {
             imageView = new ImageView(emojiKeyboardService);
@@ -38,13 +39,13 @@ public abstract class BaseEmojiAdapter extends BaseAdapter {
             imageView = (ImageView) convertView;
         }
 
-        imageView.setImageResource(iconIds.get(position));
+        imageView.setImageResource(getIconId(position));
         imageView.setBackgroundResource(R.drawable.btn_background);
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                emojiKeyboardService.sendText(emojiTexts.get(position));
+                emojiKeyboardService.sendText(getEmojiUnicodeString(position));
             }
         });
 
@@ -60,4 +61,7 @@ public abstract class BaseEmojiAdapter extends BaseAdapter {
     public long getItemId(int position) {
         return 0;
     }
+
+    public abstract int getIconId(int position);
+    public abstract String getEmojiUnicodeString(int position);
 }

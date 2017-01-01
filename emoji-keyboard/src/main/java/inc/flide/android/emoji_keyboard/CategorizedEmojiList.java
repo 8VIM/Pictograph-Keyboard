@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import inc.flide.eightvim.structures.Emoji;
+import inc.flide.android.emoji_keyboard.constants.Emoji;
 
 public class CategorizedEmojiList {
 

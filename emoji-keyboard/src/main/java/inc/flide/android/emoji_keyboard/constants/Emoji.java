@@ -1,6 +1,5 @@
 package inc.flide.android.emoji_keyboard.constants;
 
-import inc.flide.eightvim.structures.EmojiCategory;
 
 public class Emoji {
 

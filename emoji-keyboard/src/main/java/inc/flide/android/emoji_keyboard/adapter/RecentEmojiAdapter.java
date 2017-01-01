@@ -10,8 +10,11 @@ import inc.flide.android.emoji_keyboard.sqlite.RecentEntry;
 
 import java.util.ArrayList;
 
-public class RecentEmojiAdapter extends BaseEmojiAdapter {
-
+public abstract class RecentEmojiAdapter extends BaseEmojiAdapter {
+    public RecentEmojiAdapter(EmojiKeyboardService emojiKeyboardService) {
+        super(emojiKeyboardService);
+    }
+/*
     private ArrayList<RecentEntry> frequentlyUsedEmojiList;
     private EmojiDataSource dataSource;
 
@@ -78,5 +81,5 @@ public class RecentEmojiAdapter extends BaseEmojiAdapter {
         super.finalize();
 
         dataSource.close();
-    }
+    }*/
 }
