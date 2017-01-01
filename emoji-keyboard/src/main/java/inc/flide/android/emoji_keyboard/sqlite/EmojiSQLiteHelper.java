@@ -1,9 +1,8 @@
-package com.klinker.android.emoji_keyboard.sqlite;
+package inc.flide.android.emoji_keyboard.sqlite;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 public class EmojiSQLiteHelper extends SQLiteOpenHelper {
 

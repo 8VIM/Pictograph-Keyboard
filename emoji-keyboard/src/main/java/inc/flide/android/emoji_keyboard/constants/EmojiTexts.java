@@ -1,4 +1,4 @@
-package com.klinker.android.emoji_keyboard.constants;
+package inc.flide.android.emoji_keyboard.constants;
 
 public interface EmojiTexts {
 

@@ -1,8 +1,8 @@
-package com.klinker.android.emoji_keyboard.adapter;
+package inc.flide.android.emoji_keyboard.adapter;
 
 import android.content.Context;
 
-import com.klinker.android.emoji_keyboard.EmojiKeyboardService;
+import inc.flide.android.emoji_keyboard.EmojiKeyboardService;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,4 +1,4 @@
-package com.klinker.android.emoji_keyboard;
+package inc.flide.android.emoji_keyboard;
 
 import java.util.ArrayList;
 

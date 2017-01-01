@@ -1,4 +1,4 @@
-package com.klinker.android.emoji_keyboard;
+package inc.flide.android.emoji_keyboard;
 
 import android.content.Context;
 import android.inputmethodservice.InputMethodService;
@@ -13,8 +13,9 @@ import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
-import com.klinker.android.emoji_keyboard.view.EmojiKeyboardView;
-import com.klinker.android.emoji_keyboard_trial.R;
+import inc.flide.android.emoji_keyboard.view.EmojiKeyboardView;
+
+import static inc.flide.android.emoji_keyboard.R.*;
 
 public class EmojiKeyboardService extends InputMethodService {
 
@@ -48,7 +49,7 @@ public class EmojiKeyboardService extends InputMethodService {
         iBinder = this.getWindow().getWindow().getAttributes().token;
 
         emojiKeyboardView = (EmojiKeyboardView) getLayoutInflater()
-                .inflate(R.layout.emoji_keyboard_layout, null);
+                .inflate(layout.emoji_keyboard_layout, null);
 
         return emojiKeyboardView.getView();
     }

@@ -1,7 +1,7 @@
-package com.klinker.android.emoji_keyboard.constants;
+package inc.flide.android.emoji_keyboard.constants;
 
-import com.klinker.android.emoji_keyboard.Utility;
-import com.klinker.android.emoji_keyboard_trial.R;
+import inc.flide.android.emoji_keyboard.R;
+import inc.flide.android.emoji_keyboard.Utility;
 
 public final class Apple_EmojiIcons extends EmojiIcons {
     public Apple_EmojiIcons(){

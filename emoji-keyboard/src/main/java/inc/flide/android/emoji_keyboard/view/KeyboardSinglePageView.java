@@ -1,4 +1,4 @@
-package com.klinker.android.emoji_keyboard.view;
+package inc.flide.android.emoji_keyboard.view;
 
 import android.content.Context;
 import android.util.TypedValue;

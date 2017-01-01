@@ -1,4 +1,4 @@
-package com.klinker.android.emoji_keyboard.adapter;
+package inc.flide.android.emoji_keyboard.adapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -8,12 +8,12 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.klinker.android.emoji_keyboard.MainSettings;
-import com.klinker.android.emoji_keyboard.constants.Apple_EmojiIcons;
-import com.klinker.android.emoji_keyboard.constants.EmojiIcons;
-import com.klinker.android.emoji_keyboard.constants.Google_EmojiIcons;
-import com.klinker.android.emoji_keyboard.constants.EmojiTexts;
-import com.klinker.android.emoji_keyboard.view.KeyboardSinglePageView;
+import inc.flide.android.emoji_keyboard.MainSettings;
+import inc.flide.android.emoji_keyboard.constants.Apple_EmojiIcons;
+import inc.flide.android.emoji_keyboard.constants.EmojiIcons;
+import inc.flide.android.emoji_keyboard.constants.Google_EmojiIcons;
+import inc.flide.android.emoji_keyboard.constants.EmojiTexts;
+import inc.flide.android.emoji_keyboard.view.KeyboardSinglePageView;
 
 import java.util.ArrayList;
 

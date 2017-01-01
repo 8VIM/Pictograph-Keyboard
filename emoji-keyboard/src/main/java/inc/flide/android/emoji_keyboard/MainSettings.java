@@ -1,9 +1,7 @@
-package com.klinker.android.emoji_keyboard;
+package inc.flide.android.emoji_keyboard;
 
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
-
-import com.klinker.android.emoji_keyboard_trial.R;
 
 public class MainSettings extends PreferenceActivity {
 

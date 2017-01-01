@@ -1,4 +1,4 @@
-package com.klinker.android.emoji_keyboard.adapter;
+package inc.flide.android.emoji_keyboard.adapter;
 
 import android.util.TypedValue;
 import android.view.View;
@@ -6,8 +6,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
-import com.klinker.android.emoji_keyboard.EmojiKeyboardService;
-import com.klinker.android.emoji_keyboard_trial.R;
+import inc.flide.android.emoji_keyboard.EmojiKeyboardService;
+import inc.flide.android.emoji_keyboard.R;
 
 import java.util.ArrayList;
 
