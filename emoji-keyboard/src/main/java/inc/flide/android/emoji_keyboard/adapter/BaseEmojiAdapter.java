@@ -1,8 +1,9 @@
 package inc.flide.android.emoji_keyboard.adapter;
 
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -15,9 +16,9 @@ import java.util.List;
 
 import inc.flide.android.emoji_keyboard.EmojiKeyboardService;
 import inc.flide.android.emoji_keyboard.R;
-import inc.flide.android.emoji_keyboard.Utility;
 import inc.flide.android.emoji_keyboard.constants.CategorizedEmojiList;
 import inc.flide.android.emoji_keyboard.constants.Emoji;
+import inc.flide.android.logging.Logger;
 
 public abstract class BaseEmojiAdapter extends BaseAdapter {
 
@@ -48,17 +49,26 @@ public abstract class BaseEmojiAdapter extends BaseAdapter {
             imageView.setLongClickable(false);
         }
 
+        Drawable[] layers = new Drawable[2];
+        layers[0] = emojiKeyboardService.getResources().getDrawable(getIconIdBasedOnPosition(position));
+        layers[1] = emojiKeyboardService.getResources().getDrawable(R.drawable.ic_diversityindicator);
+
         imageView.setImageResource(getIconIdBasedOnPosition(position));
         imageView.setBackgroundResource(R.drawable.btn_background);
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Emoji emoji = emojiList.get(position);
+                Logger.d(this, "emoji : " + emoji.getName() + ":"+ emoji.getKeywords()+":"+emoji.isDiversityAvailable());
                 emojiKeyboardService.sendText(getEmojiUnicodeString(position));
             }
         });
 
         if (doEmojiSupportDiversity(position)) {
+
+            LayerDrawable layerDrawable = new LayerDrawable(layers);
+            imageView.setImageDrawable(layerDrawable);
             imageView.setLongClickable(true);
             imageView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
@@ -132,12 +142,16 @@ public abstract class BaseEmojiAdapter extends BaseAdapter {
     protected int getIconIdBasedOnEmoji(Emoji emoji) {
         String resourceString = filePrefix + emoji.getUnicodeHexcode().replace('-','_');
         int resourceId;
-        resourceId = emojiKeyboardService.getResources().getIdentifier(resourceString, "drawable", emojiKeyboardService.getPackageName());
+        resourceId = getDrawableResourceId(resourceString);
         if (resourceId == 0) {
-            resourceId = emojiKeyboardService.getResources().getIdentifier("ic_not_available_sign", "drawable", emojiKeyboardService.getPackageName());
+            resourceId = getDrawableResourceId("ic_not_available_sign");
         }
 
         return resourceId;
+    }
+
+    protected int getDrawableResourceId(String drawableName) {
+        return emojiKeyboardService.getResources().getIdentifier(drawableName, "drawable", emojiKeyboardService.getPackageName());
     }
 
     public abstract int getIconIdBasedOnPosition(int position);

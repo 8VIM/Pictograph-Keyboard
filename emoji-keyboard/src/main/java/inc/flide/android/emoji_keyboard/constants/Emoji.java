@@ -65,6 +65,10 @@ public class Emoji {
 
     public int getEmojiOrder() { return emojiOrder; }
 
+    public List<String> getKeywords() {
+        return keywords;
+    }
+
     public boolean isDiversityAvailable() {
         return isDiversityAvailable;
     }
