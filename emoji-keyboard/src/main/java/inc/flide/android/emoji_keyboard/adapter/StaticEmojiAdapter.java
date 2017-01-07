@@ -1,20 +1,21 @@
 package inc.flide.android.emoji_keyboard.adapter;
 
 import android.content.Context;
+import android.util.TypedValue;
+import android.view.View;
+import android.widget.ImageView;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
+import inc.flide.android.emoji_keyboard.R;
+import inc.flide.android.emoji_keyboard.Utility;
+import inc.flide.android.emoji_keyboard.constants.CategorizedEmojiList;
 import inc.flide.android.emoji_keyboard.EmojiKeyboardService;
 import inc.flide.android.emoji_keyboard.constants.Emoji;
+import inc.flide.android.logging.Logger;
 
 public class StaticEmojiAdapter extends BaseEmojiAdapter {
-
-    private static String filePrefix;
-
-    public static void setFilePrefix(String prefix) {
-        filePrefix = prefix;
-    }
 
     public StaticEmojiAdapter(Context context, List<Emoji> emojiList) {
         super((EmojiKeyboardService) context);
@@ -22,14 +23,8 @@ public class StaticEmojiAdapter extends BaseEmojiAdapter {
     }
 
     @Override
-    public int getIconId(int position) {
-        String resourceString = filePrefix + emojiList.get(position).getUnicodeHexcode().replace('-','_');
-        int resourceId;
-        resourceId = emojiKeyboardService.getResources().getIdentifier(resourceString, "drawable", emojiKeyboardService.getPackageName());
-        if (resourceId == 0) {
-            resourceId = emojiKeyboardService.getResources().getIdentifier("ic_not_available_sign", "drawable", emojiKeyboardService.getPackageName());
-        }
-        return resourceId;
+    public int getIconIdBasedOnPosition(int position) {
+        return getIconIdBasedOnEmoji(emojiList.get(position));
     }
 
     @Override

@@ -9,29 +9,8 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
-/*
-{
-    "grinning":
-        {
-        "unicode":"1f600",
-        "unicode_alt":"",
-        "code_decimal":"&#128512;",
-        "name":"grinning face",
-        "shortname":":grinning:",
-        "category":"people",
-        "emoji_order":"1",
-        "aliases":[],
-        "aliases_ascii":[],
-        "keywords":["happy","smiley","emotion"]
-        },
-     "grin":
-        {"unicode":"1f601","unicode_alt":"","code_decimal":"&#128513;","name":"grinning face with smiling eyes","shortname":":grin:","category":"people","emoji_order":"2","aliases":[],"aliases_ascii":[],"keywords":["happy","silly","smiley","emotion","good","selfie"]
-        },
-     "joy":
-        {"unicode":"1f602","unicode_alt":"","code_decimal":"&#128514;","name":"face with tears of joy","shortname":":joy:","category":"people","emoji_order":"3","aliases":[],"aliases_ascii":[":')",":'-)"],"keywords":["happy","silly","smiley","cry","laugh","emotion","sarcastic"]
-        }
-}
-*/
+import inc.flide.android.emoji_keyboard.Utility;
+
 public class EmojiJSONReader {
 
     public static final String JSON_TAG_UNICODE = "unicode";
@@ -47,7 +26,7 @@ public class EmojiJSONReader {
 
     private JsonReader reader;
     private InputStream inputStream;
-    public EmojiJSONReader(InputStream inputStream) throws UnsupportedEncodingException {
+    public EmojiJSONReader (InputStream inputStream) throws UnsupportedEncodingException {
         this.inputStream = inputStream;
     }
 
@@ -57,8 +36,12 @@ public class EmojiJSONReader {
         try {
             reader.beginObject();
             while (reader.hasNext()) {
-                reader.nextName();
-                emojiList.add(readEmoji());
+                String shortname = reader.nextName();
+                Emoji emoji = readEmoji();
+
+                if (shortname.indexOf("_tone") == -1) {
+                    emojiList.add(emoji);
+                }
             }
             reader.endObject();
         } finally {
@@ -77,7 +60,7 @@ public class EmojiJSONReader {
         int emoji_order = 0;
         List<String> aliases;
         List<String> aliases_ascii;
-        List<String> keywords;
+        List<String> keywords = null;
 
         reader.beginObject();
         while (reader.hasNext()){
@@ -111,7 +94,7 @@ public class EmojiJSONReader {
                     reader.skipValue();
                     break;
                 case JSON_TAG_KEYWORDS:
-                    reader.skipValue();
+                    keywords = readStringArray();
                     break;
                 default:
                     reader.skipValue();
@@ -119,24 +102,20 @@ public class EmojiJSONReader {
         }
         reader.endObject();
 
-        return new Emoji(name, shortname, convertStringToUnicode(unicode), unicode, EmojiCategory.valueOf(category), emoji_order);
+        return new Emoji(name, shortname, Utility.convertStringToUnicode(unicode), unicode, EmojiCategory.valueOf(category), emoji_order, keywords);
 
     }
 
+    private List<String> readStringArray() throws IOException {
+        List<String> strings = new ArrayList<>();
 
-    private String convertStringToUnicode(String unicode) {
-
-        String[] unicodeParts = unicode.split("-");
-        int[] codePoints = new int[unicodeParts.length];
-
-        for (int i = 0 ; i<unicodeParts.length; i++){
-            codePoints[i] = Integer.valueOf(unicodeParts[i], 16);
+        reader.beginArray();
+        while (reader.hasNext()){
+            strings.add(reader.nextString());
         }
+        reader.endArray();
 
-        int offset = 0;
-        int count = unicodeParts.length;
-
-        return new String(codePoints, offset, count);
+        return strings;
     }
 
 }

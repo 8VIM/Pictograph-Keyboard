@@ -12,6 +12,22 @@ import inc.flide.android.emoji_keyboard.constants.Emoji;
 import inc.flide.android.emoji_keyboard.constants.EmojiJSONReader;
 
 public class Utility {
+
+    public static final String convertStringToUnicode(String unicode) {
+
+        String[] unicodeParts = unicode.split("-");
+        int[] codePoints = new int[unicodeParts.length];
+
+        for (int i = 0 ; i<unicodeParts.length; i++){
+            codePoints[i] = Integer.valueOf(unicodeParts[i], 16);
+        }
+
+        int offset = 0;
+        int count = unicodeParts.length;
+
+        return new String(codePoints, offset, count);
+    }
+
     public static final ArrayList<Integer> initArrayList(int... ints) {
         ArrayList<Integer> list = new ArrayList<Integer>();
         for (int i : ints)

@@ -1,14 +1,17 @@
-package inc.flide.android.emoji_keyboard;
+package inc.flide.android.emoji_keyboard.constants;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import inc.flide.android.emoji_keyboard.Utility;
 import inc.flide.android.emoji_keyboard.constants.Emoji;
 
 public class CategorizedEmojiList {
 
+    private static CategorizedEmojiList instance = null;
+    private boolean isInitialized;
     private List<Emoji> people = new ArrayList<>();
     private List<Emoji> nature = new ArrayList<>();
     private List<Emoji> activity = new ArrayList<>();
@@ -20,9 +23,87 @@ public class CategorizedEmojiList {
     private List<Emoji> modifier = new ArrayList<>();
     private List<Emoji> regional = new ArrayList<>();
 
-    public CategorizedEmojiList(List<Emoji> emojis) {
+    public static final CategorizedEmojiList getInstance() {
+        if (instance == null) {
+            instance = new CategorizedEmojiList();
+        }
+
+        return instance;
+    }
+
+    public List<Emoji> getDiversityEmojisList(Emoji primaryEmoji) {
+        if(isInitialized) {
+            List<Emoji> diversityEmojiList = new ArrayList<>();
+            for (Emoji emoji : modifier) {
+                Emoji diversity = new Emoji(primaryEmoji);
+                diversity.setUnicodeHexcode(diversity.getUnicodeHexcode() + "-" + emoji.getUnicodeHexcode());
+                diversity.setUnicodeJavaString(Utility.convertStringToUnicode(diversity.getUnicodeHexcode()));
+                diversityEmojiList.add(diversity);
+            }
+            return diversityEmojiList;
+        }
+
+        return null;
+    }
+
+    public void initializeCategoziedEmojiList(List<Emoji> emojis){
+        resetAllEmojiLists();
         categorizeEmoji(emojis);
         sortEmoji();
+        isInitialized = true;
+    }
+
+    public List<Emoji> getActivity() {
+        return activity;
+    }
+
+    public List<Emoji> getFlags() {
+        return flags;
+    }
+
+    public List<Emoji> getFood() {
+        return food;
+    }
+
+    public List<Emoji> getModifier() {
+        return modifier;
+    }
+
+    public List<Emoji> getNature() {
+        return nature;
+    }
+
+    public List<Emoji> getObjects() {
+        return objects;
+    }
+
+    public List<Emoji> getPeople() {
+        return people;
+    }
+
+    public List<Emoji> getRegional() {
+        return regional;
+    }
+
+    public List<Emoji> getSymbols() {
+        return symbols;
+    }
+
+    public List<Emoji> getTravel() {
+        return travel;
+    }
+
+    private void resetAllEmojiLists() {
+        people.clear();
+        nature.clear();
+        activity.clear();
+        food.clear();
+        travel.clear();
+        objects.clear();
+        symbols.clear();
+        flags.clear();
+        modifier.clear();
+        regional.clear();
     }
 
     private void sortEmoji() {
@@ -38,7 +119,7 @@ public class CategorizedEmojiList {
         Collections.sort(regional, emojiComparator);
     }
 
-    Comparator<Emoji> emojiComparator = new Comparator<Emoji>() {
+    private Comparator<Emoji> emojiComparator = new Comparator<Emoji>() {
         @Override
         public int compare(Emoji first, Emoji second) {
             return first.getEmojiOrder() - second.getEmojiOrder();
@@ -80,45 +161,5 @@ public class CategorizedEmojiList {
                     break;
             }
         }
-    }
-
-    public List<Emoji> getActivity() {
-        return activity;
-    }
-
-    public List<Emoji> getFlags() {
-        return flags;
-    }
-
-    public List<Emoji> getFood() {
-        return food;
-    }
-
-    public List<Emoji> getModifier() {
-        return modifier;
-    }
-
-    public List<Emoji> getNature() {
-        return nature;
-    }
-
-    public List<Emoji> getObjects() {
-        return objects;
-    }
-
-    public List<Emoji> getPeople() {
-        return people;
-    }
-
-    public List<Emoji> getRegional() {
-        return regional;
-    }
-
-    public List<Emoji> getSymbols() {
-        return symbols;
-    }
-
-    public List<Emoji> getTravel() {
-        return travel;
     }
 }

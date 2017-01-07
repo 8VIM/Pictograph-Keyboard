@@ -12,7 +12,7 @@ import com.astuetz.PagerSlidingTabStrip;
 
 import java.util.ArrayList;
 
-import inc.flide.android.emoji_keyboard.CategorizedEmojiList;
+import inc.flide.android.emoji_keyboard.constants.CategorizedEmojiList;
 import inc.flide.android.emoji_keyboard.MainSettings;
 import inc.flide.android.emoji_keyboard.R;
 import inc.flide.android.emoji_keyboard.Utility;
@@ -20,14 +20,15 @@ import inc.flide.android.emoji_keyboard.view.EmojiKeyboardView;
 
 public class EmojiPagerAdapter extends PagerAdapter implements PagerSlidingTabStrip.IconTabProvider {
 
-    private final int ICONS[] = {R.drawable.ic_emoji_category_people,
-            R.drawable.ic_emoji_category_nature,
-            R.drawable.ic_emoji_category_foods,
-            R.drawable.ic_emoji_category_activity,
-            R.drawable.ic_emoji_category_travel,
-            R.drawable.ic_emoji_category_objects,
-            R.drawable.ic_emoji_category_symbols,
-            R.drawable.ic_emoji_category_flags};
+    private final int ICONS[] = {
+                                R.drawable.ic_emoji_category_people,
+                                R.drawable.ic_emoji_category_nature,
+                                R.drawable.ic_emoji_category_foods,
+                                R.drawable.ic_emoji_category_activity,
+                                R.drawable.ic_emoji_category_travel,
+                                R.drawable.ic_emoji_category_objects,
+                                R.drawable.ic_emoji_category_symbols,
+                                R.drawable.ic_emoji_category_flags};
 
     private ViewPager pager;
     private ArrayList<View> pages;
@@ -36,7 +37,8 @@ public class EmojiPagerAdapter extends PagerAdapter implements PagerSlidingTabSt
     public EmojiPagerAdapter(Context context, ViewPager pager, int keyboardHeight) {
         super();
 
-        CategorizedEmojiList categorizedEmojiList = new CategorizedEmojiList(Utility.loadEmojiData(context.getResources(), context.getPackageName()));
+        CategorizedEmojiList categorizedEmojiList = CategorizedEmojiList.getInstance();
+        categorizedEmojiList.initializeCategoziedEmojiList(Utility.loadEmojiData(context.getResources(), context.getPackageName()));
 
         this.pager = pager;
         this.keyboardHeight = keyboardHeight;

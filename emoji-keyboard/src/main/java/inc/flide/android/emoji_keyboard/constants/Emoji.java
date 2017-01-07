@@ -1,5 +1,6 @@
 package inc.flide.android.emoji_keyboard.constants;
 
+import java.util.List;
 
 public class Emoji {
 
@@ -8,15 +9,39 @@ public class Emoji {
     private String unicodeJavaString;
     private String unicodeHexcode;
     private EmojiCategory category;
+    private List<String> keywords;
     private int emojiOrder;
+    private boolean isDiversityAvailable;
 
-    public Emoji(String name, String shortName, String unicodeJavaString, String unicodeHexcode, EmojiCategory category, int emojiOrder) {
+    public Emoji(String name, String shortName, String unicodeJavaString, String unicodeHexcode, EmojiCategory category, int emojiOrder, List<String> keywords) {
         this.name = name;
         this.shortName = shortName;
         this.unicodeJavaString = unicodeJavaString;
         this.unicodeHexcode = unicodeHexcode;
         this.category = category;
         this.emojiOrder = emojiOrder;
+        this.keywords = keywords;
+        setDiversity();
+    }
+
+    public Emoji(Emoji copy) {
+        this.name = copy.name;
+        this.shortName = copy.shortName;
+        this.unicodeJavaString = copy.unicodeJavaString;
+        this.unicodeHexcode = copy.unicodeHexcode;
+        this.category = copy.category;
+        this.emojiOrder = copy.emojiOrder;
+        this.keywords = copy.keywords;
+        this.isDiversityAvailable = copy.isDiversityAvailable;
+    }
+
+    private void setDiversity() {
+        isDiversityAvailable = false;
+        for(String keyword: keywords) {
+            if(keyword.equalsIgnoreCase("diversity")){
+                isDiversityAvailable = true;
+            }
+        }
     }
 
     public String getName() {
@@ -39,5 +64,41 @@ public class Emoji {
     }
 
     public int getEmojiOrder() { return emojiOrder; }
+
+    public boolean isDiversityAvailable() {
+        return isDiversityAvailable;
+    }
+
+    public void setCategory(EmojiCategory category) {
+        this.category = category;
+    }
+
+    public void setEmojiOrder(int emojiOrder) {
+        this.emojiOrder = emojiOrder;
+    }
+
+    public void setDiversityAvailable(boolean diversityAvailable) {
+        isDiversityAvailable = diversityAvailable;
+    }
+
+    public void setKeywords(List<String> keywords) {
+        this.keywords = keywords;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setShortName(String shortName) {
+        this.shortName = shortName;
+    }
+
+    public void setUnicodeHexcode(String unicodeHexcode) {
+        this.unicodeHexcode = unicodeHexcode;
+    }
+
+    public void setUnicodeJavaString(String unicodeJavaString) {
+        this.unicodeJavaString = unicodeJavaString;
+    }
 
 }
