@@ -1,6 +1,8 @@
-package inc.flide.android.emoji_keyboard.constants;
+package inc.flide.android.emoji_keyboard.utilities;
 
 import java.util.List;
+
+import inc.flide.android.emoji_keyboard.constants.EmojiCategory;
 
 public class Emoji {
 

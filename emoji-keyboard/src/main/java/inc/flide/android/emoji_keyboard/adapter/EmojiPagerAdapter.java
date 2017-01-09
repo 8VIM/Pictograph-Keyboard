@@ -12,15 +12,16 @@ import com.astuetz.PagerSlidingTabStrip;
 
 import java.util.ArrayList;
 
-import inc.flide.android.emoji_keyboard.constants.CategorizedEmojiList;
-import inc.flide.android.emoji_keyboard.MainSettings;
+import inc.flide.android.emoji_keyboard.utilities.CategorizedEmojiList;
+import inc.flide.android.settings.MainSettings;
 import inc.flide.android.emoji_keyboard.R;
-import inc.flide.android.emoji_keyboard.Utility;
+import inc.flide.android.emoji_keyboard.utilities.Utility;
 import inc.flide.android.emoji_keyboard.view.EmojiKeyboardView;
 
 public class EmojiPagerAdapter extends PagerAdapter implements PagerSlidingTabStrip.IconTabProvider {
 
     private final int ICONS[] = {
+                                R.drawable.ic_emoji_category_recent,
                                 R.drawable.ic_emoji_category_people,
                                 R.drawable.ic_emoji_category_nature,
                                 R.drawable.ic_emoji_category_foods,
@@ -44,7 +45,8 @@ public class EmojiPagerAdapter extends PagerAdapter implements PagerSlidingTabSt
         this.keyboardHeight = keyboardHeight;
         this.pages = new ArrayList<View>();
 
-        StaticEmojiAdapter.setFilePrefix(getPreferedIconSet());
+        BaseEmojiAdapter.setFilePrefix(getPreferedIconSet());
+        pages.add(new EmojiKeyboardView.KeyboardSinglePageView(context, new RecentEmojiAdapter(context)).getView());
         pages.add(new EmojiKeyboardView.KeyboardSinglePageView(context, new StaticEmojiAdapter(context, categorizedEmojiList.getPeople())).getView());
         pages.add(new EmojiKeyboardView.KeyboardSinglePageView(context, new StaticEmojiAdapter(context, categorizedEmojiList.getNature())).getView());
         pages.add(new EmojiKeyboardView.KeyboardSinglePageView(context, new StaticEmojiAdapter(context, categorizedEmojiList.getFood())).getView());

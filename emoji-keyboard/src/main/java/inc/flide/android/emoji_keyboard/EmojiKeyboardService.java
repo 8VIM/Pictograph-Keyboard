@@ -34,10 +34,6 @@ public class EmojiKeyboardService extends InputMethodService {
 
     public EmojiKeyboardService() {
         super();
-
-        if (Build.VERSION.SDK_INT >= 17) {
-            enableHardwareAcceleration();
-        }
     }
 
     @Override
@@ -89,11 +85,11 @@ public class EmojiKeyboardService extends InputMethodService {
                 )
         );
     }
+
     public void sendDownAndUpKeyEvent(int keyEventCode, int flags){
         sendDownKeyEvent(keyEventCode, flags);
         sendUpKeyEvent(keyEventCode, flags);
     }
-
 
     public void switchToPreviousInputMethod() {
 

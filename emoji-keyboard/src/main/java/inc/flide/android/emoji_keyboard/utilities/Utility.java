@@ -1,4 +1,4 @@
-package inc.flide.android.emoji_keyboard;
+package inc.flide.android.emoji_keyboard.utilities;
 
 import android.content.res.Resources;
 
@@ -7,9 +7,6 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
-
-import inc.flide.android.emoji_keyboard.constants.Emoji;
-import inc.flide.android.emoji_keyboard.constants.EmojiJSONReader;
 
 public class Utility {
 

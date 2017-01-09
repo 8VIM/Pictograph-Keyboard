@@ -16,8 +16,8 @@ import java.util.List;
 
 import inc.flide.android.emoji_keyboard.EmojiKeyboardService;
 import inc.flide.android.emoji_keyboard.R;
-import inc.flide.android.emoji_keyboard.constants.CategorizedEmojiList;
-import inc.flide.android.emoji_keyboard.constants.Emoji;
+import inc.flide.android.emoji_keyboard.utilities.CategorizedEmojiList;
+import inc.flide.android.emoji_keyboard.utilities.Emoji;
 import inc.flide.android.logging.Logger;
 
 public abstract class BaseEmojiAdapter extends BaseAdapter {
@@ -154,8 +154,13 @@ public abstract class BaseEmojiAdapter extends BaseAdapter {
         return emojiKeyboardService.getResources().getIdentifier(drawableName, "drawable", emojiKeyboardService.getPackageName());
     }
 
-    public abstract int getIconIdBasedOnPosition(int position);
-    public abstract String getEmojiUnicodeString(int position);
+    public int getIconIdBasedOnPosition(int position) {
+        return getIconIdBasedOnEmoji(emojiList.get(position));
+    }
+
+    public String getEmojiUnicodeString(int position) {
+        return emojiList.get(position).getUnicodeJavaString();
+    }
 
     public static void setFilePrefix(String prefix) {
         filePrefix = prefix;

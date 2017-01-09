@@ -1,12 +1,9 @@
-package inc.flide.android.emoji_keyboard.constants;
+package inc.flide.android.emoji_keyboard.utilities;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
-import inc.flide.android.emoji_keyboard.Utility;
-import inc.flide.android.emoji_keyboard.constants.Emoji;
 
 public class CategorizedEmojiList {
 

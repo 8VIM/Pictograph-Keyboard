@@ -10,76 +10,19 @@ import inc.flide.android.emoji_keyboard.sqlite.RecentEntry;
 
 import java.util.ArrayList;
 
-public abstract class RecentEmojiAdapter extends BaseEmojiAdapter {
-    public RecentEmojiAdapter(EmojiKeyboardService emojiKeyboardService) {
-        super(emojiKeyboardService);
-    }
-/*
-    private ArrayList<RecentEntry> frequentlyUsedEmojiList;
-    private EmojiDataSource dataSource;
+public class RecentEmojiAdapter extends BaseEmojiAdapter {
 
     public RecentEmojiAdapter(Context context) {
         super((EmojiKeyboardService) context);
-
-        dataSource = new EmojiDataSource(context);
-        dataSource.openInReadWriteMode();
-        frequentlyUsedEmojiList = (ArrayList<RecentEntry>) dataSource.getAllEntriesInDescendingOrderOfCount();
-        setupEmojiDataFromList(frequentlyUsedEmojiList);
+        //this.emojiList = dataSource.getAllEntriesInDescendingOrderOfCount();
     }
 
-    private void setupEmojiDataFromList(ArrayList<RecentEntry> recentEntries) {
-        emojiTexts = new ArrayList<String>();
-        iconIds = new ArrayList<Integer>();
-        for(RecentEntry i: recentEntries) {
-            emojiTexts.add(i.getText());
-            iconIds.add(Integer.parseInt(i.getIcon()));
-        }
-    }
-
-    @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
-        final View imageView = super.getView(position, convertView, parent);
-
-        final RecentEmojiAdapter adapter = this;
-
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                emojiKeyboardService.sendText(emojiTexts.get(position));
-
-                for (int i = 0; i < frequentlyUsedEmojiList.size(); i++) {
-                    if (frequentlyUsedEmojiList.get(i).getText().equals(emojiTexts.get(position))) {
-                        dataSource.incrementExistingEntryCountbyOne(iconIds.get(position) + "");
-                        frequentlyUsedEmojiList.get(i).setCount(frequentlyUsedEmojiList.get(i).getCount());
-                        return;
-                    }
-                }
-
-                RecentEntry recentEntry = dataSource.insertNewEntry(emojiTexts.get(position), iconIds.get(position) + "");
-
-                if (recentEntry != null)
-                    frequentlyUsedEmojiList.add(recentEntry);
-            }
-        });
-
-        imageView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-
-                dataSource.deleteEntryWithId(frequentlyUsedEmojiList.get(position).getId());
-                frequentlyUsedEmojiList.remove(position);
-                adapter.notifyDataSetChanged();
-                return true;
-            }
-        });
-
-        return imageView;
-    }
+    private EmojiDataSource dataSource;
 
     @Override
     protected void finalize() throws Throwable {
         super.finalize();
 
         dataSource.close();
-    }*/
+    }
 }
