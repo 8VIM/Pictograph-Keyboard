@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import inc.flide.android.emoji_keyboard.constants.EmojiCategory;
+
 public class CategorizedEmojiList {
 
     private static CategorizedEmojiList instance = null;
@@ -27,6 +29,7 @@ public class CategorizedEmojiList {
 
         return instance;
     }
+    private CategorizedEmojiList() {}
 
     public List<Emoji> getDiversityEmojisList(Emoji primaryEmoji) {
         if(isInitialized) {
@@ -158,5 +161,55 @@ public class CategorizedEmojiList {
                     break;
             }
         }
+    }
+
+    public Emoji searchForEmoji(String unicodeHexValue, String category) {
+        if(! isInitialized ) {
+            return null;
+        }
+        EmojiCategory emojiCategory = EmojiCategory.valueOf(category);
+        List<Emoji> searchableEmojiList = new ArrayList<>();
+        switch (emojiCategory) {
+            case people:
+                searchableEmojiList = people;
+                break;
+            case nature:
+                searchableEmojiList = nature;
+                break;
+            case activity:
+                searchableEmojiList = activity;
+                break;
+            case food:
+                searchableEmojiList = food;
+                break;
+            case travel:
+                searchableEmojiList = travel;
+                break;
+            case objects:
+                searchableEmojiList = objects;
+                break;
+            case symbols:
+                searchableEmojiList = symbols;
+                break;
+            case flags:
+                searchableEmojiList = flags;
+                break;
+            case modifier:
+                searchableEmojiList = modifier;
+                break;
+            case regional:
+                searchableEmojiList = regional;
+                break;
+        }
+
+        Emoji result = null;
+        for (Emoji emoji : searchableEmojiList){
+            if(emoji.getUnicodeHexcode().compareToIgnoreCase(unicodeHexValue)==0) {
+                result = emoji;
+                break;
+            }
+        }
+
+        return result;
     }
 }

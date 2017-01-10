@@ -14,10 +14,18 @@ public class RecentEmojiAdapter extends BaseEmojiAdapter {
 
     public RecentEmojiAdapter(Context context) {
         super((EmojiKeyboardService) context);
-        //this.emojiList = dataSource.getAllEntriesInDescendingOrderOfCount();
+        dataSource = EmojiDataSource.getInstance(context);
+        dataSource.openInReadWriteMode();
+        this.emojiList = dataSource.getAllEntriesInDescendingOrderOfCount();
     }
 
     private EmojiDataSource dataSource;
+
+    @Override
+    public View getView(final int position, final View convertView, ViewGroup parent) {
+        this.emojiList = dataSource.getAllEntriesInDescendingOrderOfCount();
+        return super.getView(position, convertView, parent);
+    }
 
     @Override
     protected void finalize() throws Throwable {

@@ -16,6 +16,7 @@ import java.util.List;
 
 import inc.flide.android.emoji_keyboard.EmojiKeyboardService;
 import inc.flide.android.emoji_keyboard.R;
+import inc.flide.android.emoji_keyboard.sqlite.EmojiDataSource;
 import inc.flide.android.emoji_keyboard.utilities.CategorizedEmojiList;
 import inc.flide.android.emoji_keyboard.utilities.Emoji;
 import inc.flide.android.logging.Logger;
@@ -32,11 +33,14 @@ public abstract class BaseEmojiAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
+        if (emojiList == null) {
+            return 0;
+        }
         return emojiList.size();
     }
 
     @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, final View convertView, ViewGroup parent) {
 
         final ImageView imageView;
         if (convertView == null) {
@@ -60,8 +64,8 @@ public abstract class BaseEmojiAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Emoji emoji = emojiList.get(position);
-                Logger.d(this, "emoji : " + emoji.getName() + ":"+ emoji.getKeywords()+":"+emoji.isDiversityAvailable());
-                emojiKeyboardService.sendText(getEmojiUnicodeString(position));
+                emojiKeyboardService.sendText(emoji.getUnicodeJavaString());
+                EmojiDataSource.getInstance(emojiKeyboardService).addEntry(emoji);
             }
         });
 
