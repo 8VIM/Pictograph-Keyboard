@@ -47,4 +47,5 @@ android {
 dependencies {
     compile 'com.android.support:support-v4:25.0.1'
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
+    compile 'com.orhanobut:logger:1.15'
 }

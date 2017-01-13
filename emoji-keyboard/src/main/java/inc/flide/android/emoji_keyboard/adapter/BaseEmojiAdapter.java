@@ -19,7 +19,6 @@ import inc.flide.android.emoji_keyboard.R;
 import inc.flide.android.emoji_keyboard.sqlite.EmojiDataSource;
 import inc.flide.android.emoji_keyboard.utilities.CategorizedEmojiList;
 import inc.flide.android.emoji_keyboard.utilities.Emoji;
-import inc.flide.android.logging.Logger;
 
 public abstract class BaseEmojiAdapter extends BaseAdapter {
 
