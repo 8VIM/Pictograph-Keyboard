@@ -9,6 +9,8 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.orhanobut.logger.Logger;
+
 import inc.flide.android.emoji_keyboard.utilities.CategorizedEmojiList;
 import inc.flide.android.emoji_keyboard.utilities.Emoji;
 
@@ -103,7 +105,9 @@ public class EmojiDataSource {
 
     public List<Emoji> getAllEntriesInDescendingOrderOfCount() {
         List<Emoji> recentEntries = new ArrayList<>();
-
+        if(!database.isOpen()) {
+            this.openInReadWriteMode();
+        }
         Cursor cursor = database.query(EmojiSQLiteHelper.TABLE_RECENTS,
                 allColumns, null, null, null, null, EmojiSQLiteHelper.COLUMN_COUNT + " * 1 DESC");
 
