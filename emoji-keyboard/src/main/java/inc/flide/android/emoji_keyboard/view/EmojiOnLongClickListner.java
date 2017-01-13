@@ -62,14 +62,7 @@ public class EmojiOnLongClickListner implements View.OnLongClickListener {
         for (final Emoji emoji: diversityEmojiList) {
             ImageView imageView = BaseEmojiAdapter.setupImageView(null, emoji);
 
-            imageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    inputMethodService.sendText(emoji.getUnicodeJavaString());
-                    EmojiDataSource.getInstance(inputMethodService.getContext()).addEntry(emoji);
-                    popupWindow.dismiss();
-                }
-            });
+            imageView.setOnClickListener(new PopupWindowEmojiOnClickListner(emoji, inputMethodService, popupWindow));
             diversityEmojiImageViewList.add(imageView);
         }
         return diversityEmojiImageViewList;

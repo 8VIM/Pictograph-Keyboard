@@ -4,6 +4,7 @@ import android.view.View;
 
 import inc.flide.android.emoji_keyboard.InputMethodServiceProxy;
 import inc.flide.android.emoji_keyboard.sqlite.EmojiDataSource;
+import inc.flide.android.emoji_keyboard.utilities.CategorizedEmojiList;
 import inc.flide.android.emoji_keyboard.utilities.Emoji;
 
 public class EmojiOnClickListner implements View.OnClickListener {
@@ -19,6 +20,10 @@ public class EmojiOnClickListner implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         inputMethodService.sendText(emoji.getUnicodeJavaString());
-        EmojiDataSource.getInstance(inputMethodService.getContext()).addEntry(emoji);
+
+        EmojiDataSource.getInstance(inputMethodService.getContext())
+                .addEntry(
+                    CategorizedEmojiList.getInstance().searchForEmojiIgnoreModifier(emoji.getUnicodeHexcode(), emoji.getCategory().toString())
+                );
     }
 }

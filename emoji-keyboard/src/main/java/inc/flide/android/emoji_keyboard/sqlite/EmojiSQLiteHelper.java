@@ -13,7 +13,7 @@ public class EmojiSQLiteHelper extends SQLiteOpenHelper {
     public static final String COLUMN_COUNT = "Count";
 
     private static final String DATABASE_NAME = "RecentEmojis.db";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 1;
 
     // Database creation sql statement
     private static final String DATABASE_CREATE = "CREATE TABLE " + TABLE_RECENTS + "("
