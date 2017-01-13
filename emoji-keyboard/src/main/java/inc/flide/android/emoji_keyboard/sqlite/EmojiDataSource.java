@@ -11,7 +11,6 @@ import android.database.sqlite.SQLiteDatabase;
 
 import inc.flide.android.emoji_keyboard.utilities.CategorizedEmojiList;
 import inc.flide.android.emoji_keyboard.utilities.Emoji;
-import inc.flide.android.logging.Logger;
 
 public class EmojiDataSource {
     private static final int NUM_RECENTS_TO_SAVE = 60;
@@ -59,13 +58,10 @@ public class EmojiDataSource {
     }
 
     public void addEntry(Emoji emoji) {
-        if (database == null) {
-            Logger.d(this, "database object is null you ass!!");
-        }
-        Cursor cursor = database.query(EmojiSQLiteHelper.TABLE_RECENTS,
-                allColumns, EmojiSQLiteHelper.COLUMN_UNICODE_HEX_CODE + " = '" + emoji.getUnicodeHexcode() + "'", null,
-                null, null, null);
 
+        Cursor cursor = database.query(EmojiSQLiteHelper.TABLE_RECENTS,
+                allColumns, EmojiSQLiteHelper.COLUMN_UNICODE_HEX_CODE + " = '" + CategorizedEmojiList.getInstance().removeModifierIfPresent(emoji.getUnicodeHexcode()) + "'", null,
+                null, null, null);
         if (cursor.getCount() == 0) {
             insertNewEntry(emoji);
         } else {

@@ -76,7 +76,7 @@ public abstract class BaseEmojiAdapter extends BaseAdapter {
             imageView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
-                    diversityEmojiPopup(imageView, position);
+                    setupDiversityEmojiPopup(imageView, position);
                     return true;
                 }
             });
@@ -84,7 +84,7 @@ public abstract class BaseEmojiAdapter extends BaseAdapter {
         return imageView;
     }
 
-    private void diversityEmojiPopup(ImageView imageView, int position) {
+    private void setupDiversityEmojiPopup(ImageView imageView, int position) {
         LayoutInflater layoutInflater = (LayoutInflater)emojiKeyboardService
                                             .getSystemService(emojiKeyboardService.LAYOUT_INFLATER_SERVICE);
         final View popupView = layoutInflater.inflate(R.layout.popup, null);
@@ -134,6 +134,7 @@ public abstract class BaseEmojiAdapter extends BaseAdapter {
                 @Override
                 public void onClick(View v) {
                     emojiKeyboardService.sendText(emoji.getUnicodeJavaString());
+                    EmojiDataSource.getInstance(emojiKeyboardService).addEntry(emoji);
                     popupWindow.dismiss();
                 }
             });

@@ -1,5 +1,7 @@
 package inc.flide.android.emoji_keyboard.utilities;
 
+import com.orhanobut.logger.Logger;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -10,7 +12,7 @@ import inc.flide.android.emoji_keyboard.constants.EmojiCategory;
 public class CategorizedEmojiList {
 
     private static CategorizedEmojiList instance = null;
-    private boolean isInitialized;
+
     private List<Emoji> people = new ArrayList<>();
     private List<Emoji> nature = new ArrayList<>();
     private List<Emoji> activity = new ArrayList<>();
@@ -32,25 +34,20 @@ public class CategorizedEmojiList {
     private CategorizedEmojiList() {}
 
     public List<Emoji> getDiversityEmojisList(Emoji primaryEmoji) {
-        if(isInitialized) {
-            List<Emoji> diversityEmojiList = new ArrayList<>();
-            for (Emoji emoji : modifier) {
-                Emoji diversity = new Emoji(primaryEmoji);
-                diversity.setUnicodeHexcode(diversity.getUnicodeHexcode() + "-" + emoji.getUnicodeHexcode());
-                diversity.setUnicodeJavaString(Utility.convertStringToUnicode(diversity.getUnicodeHexcode()));
-                diversityEmojiList.add(diversity);
-            }
-            return diversityEmojiList;
+        List<Emoji> diversityEmojiList = new ArrayList<>();
+        for (Emoji emoji : modifier) {
+            Emoji diversity = new Emoji(primaryEmoji);
+            diversity.setUnicodeHexcode(diversity.getUnicodeHexcode() + "-" + emoji.getUnicodeHexcode());
+            diversity.setUnicodeJavaString(Utility.convertStringToUnicode(diversity.getUnicodeHexcode()));
+            diversityEmojiList.add(diversity);
         }
-
-        return null;
+        return diversityEmojiList;
     }
 
     public void initializeCategoziedEmojiList(List<Emoji> emojis){
         resetAllEmojiLists();
         categorizeEmoji(emojis);
         sortEmoji();
-        isInitialized = true;
     }
 
     public List<Emoji> getActivity() {
@@ -163,10 +160,24 @@ public class CategorizedEmojiList {
         }
     }
 
-    public Emoji searchForEmoji(String unicodeHexValue, String category) {
-        if(! isInitialized ) {
-            return null;
+    public Emoji searchForEmojiIgnoreModifier(String unicodeHexValue, String category) {
+        String unicodeHexValueWithoutModifier = removeModifierIfPresent(unicodeHexValue);
+        Emoji returnValue = searchForEmoji(unicodeHexValueWithoutModifier, category);
+        return returnValue;
+    }
+
+    public String removeModifierIfPresent(String unicodeHexValue) {
+        String modifierRemovedUnicodeHexValue = unicodeHexValue;
+        for(Emoji mod : modifier) {
+            int indexOfModifier = unicodeHexValue.indexOf(mod.getUnicodeHexcode());
+            if(indexOfModifier != -1){
+                modifierRemovedUnicodeHexValue = unicodeHexValue.substring(0, indexOfModifier-1);
+            }
         }
+        return modifierRemovedUnicodeHexValue;
+    }
+
+    public Emoji searchForEmoji(String unicodeHexValue, String category) {
         EmojiCategory emojiCategory = EmojiCategory.valueOf(category);
         List<Emoji> searchableEmojiList = new ArrayList<>();
         switch (emojiCategory) {
