@@ -11,4 +11,6 @@ public interface InputMethodServiceProxy {
     void sendText(String unicodeJavaString);
 
     Context getContext();
+
+    int getDrawableResourceId(String resourceString);
 }

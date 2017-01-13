@@ -12,6 +12,9 @@ import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import com.orhanobut.logger.LogLevel;
+import com.orhanobut.logger.Logger;
+
 import inc.flide.android.emoji_keyboard.InputMethodServiceProxy;
 import inc.flide.android.emoji_keyboard.view.EmojiKeyboardView;
 
@@ -28,6 +31,8 @@ public class EmojiKeyboardService extends InputMethodService implements InputMet
 
     public EmojiKeyboardService() {
         super();
+
+        Logger.init("EmojiKeyboard").methodCount(5).logLevel(LogLevel.FULL).methodOffset(3);
     }
 
     @Override
@@ -103,5 +108,10 @@ public class EmojiKeyboardService extends InputMethodService implements InputMet
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
         }
+    }
+
+    public int getDrawableResourceId(String drawableName) {
+        return getContext().getResources()
+                .getIdentifier(drawableName, "drawable", getPackageName());
     }
 }
