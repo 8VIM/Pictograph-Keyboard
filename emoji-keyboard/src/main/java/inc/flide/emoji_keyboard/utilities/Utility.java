@@ -1,4 +1,4 @@
-package inc.flide.android.emoji_keyboard.utilities;
+package inc.flide.emoji_keyboard.utilities;
 
 import android.content.res.Resources;
 

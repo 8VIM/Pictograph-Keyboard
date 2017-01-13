@@ -1,11 +1,9 @@
-package inc.flide.android.emoji_keyboard.adapter;
+package inc.flide.emoji_keyboard.adapter;
 
 import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
 
-import inc.flide.android.emoji_keyboard.InputMethodServiceProxy;
-import inc.flide.android.emoji_keyboard.sqlite.EmojiDataSource;
+import inc.flide.emoji_keyboard.InputMethodServiceProxy;
+import inc.flide.emoji_keyboard.sqlite.EmojiDataSource;
 
 public class RecentEmojiAdapter extends BaseEmojiAdapter {
 

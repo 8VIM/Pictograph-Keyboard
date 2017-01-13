@@ -1,4 +1,4 @@
-package inc.flide.android.emoji_keyboard.constants;
+package inc.flide.emoji_keyboard.constants;
 
 public interface Constants {
     int DELAY_MILLIS_LONG_PRESS_INITIATION = 500;

@@ -1,4 +1,4 @@
-package inc.flide.android.emoji_keyboard.adapter;
+package inc.flide.emoji_keyboard.adapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -12,11 +12,11 @@ import com.astuetz.PagerSlidingTabStrip;
 
 import java.util.ArrayList;
 
-import inc.flide.android.emoji_keyboard.utilities.CategorizedEmojiList;
-import inc.flide.android.settings.MainSettings;
 import inc.flide.android.emoji_keyboard.R;
-import inc.flide.android.emoji_keyboard.utilities.Utility;
-import inc.flide.android.emoji_keyboard.view.EmojiKeyboardView;
+import inc.flide.emoji_keyboard.utilities.CategorizedEmojiList;
+import inc.flide.android.settings.MainSettings;
+import inc.flide.emoji_keyboard.utilities.Utility;
+import inc.flide.emoji_keyboard.view.EmojiKeyboardView;
 
 public class EmojiPagerAdapter extends PagerAdapter implements PagerSlidingTabStrip.IconTabProvider {
 

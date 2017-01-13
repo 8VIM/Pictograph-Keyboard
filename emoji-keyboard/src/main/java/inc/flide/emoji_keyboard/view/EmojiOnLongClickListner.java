@@ -1,4 +1,4 @@
-package inc.flide.android.emoji_keyboard.view;
+package inc.flide.emoji_keyboard.view;
 
 import android.content.Context;
 import android.util.TypedValue;
@@ -12,12 +12,12 @@ import android.widget.PopupWindow;
 import java.util.ArrayList;
 import java.util.List;
 
-import inc.flide.android.emoji_keyboard.InputMethodServiceProxy;
+import inc.flide.emoji_keyboard.InputMethodServiceProxy;
 import inc.flide.android.emoji_keyboard.R;
-import inc.flide.android.emoji_keyboard.adapter.BaseEmojiAdapter;
-import inc.flide.android.emoji_keyboard.sqlite.EmojiDataSource;
-import inc.flide.android.emoji_keyboard.utilities.CategorizedEmojiList;
-import inc.flide.android.emoji_keyboard.utilities.Emoji;
+import inc.flide.emoji_keyboard.adapter.BaseEmojiAdapter;
+import inc.flide.emoji_keyboard.utilities.CategorizedEmojiList;
+import inc.flide.emoji_keyboard.sqlite.EmojiDataSource;
+import inc.flide.emoji_keyboard.utilities.Emoji;
 
 public class EmojiOnLongClickListner implements View.OnLongClickListener {
 

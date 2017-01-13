@@ -1,4 +1,4 @@
-package inc.flide.android.emoji_keyboard.sqlite;
+package inc.flide.emoji_keyboard.sqlite;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

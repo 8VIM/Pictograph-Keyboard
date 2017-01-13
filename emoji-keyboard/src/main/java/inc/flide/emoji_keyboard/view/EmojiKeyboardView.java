@@ -1,4 +1,4 @@
-package inc.flide.android.emoji_keyboard.view;
+package inc.flide.emoji_keyboard.view;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -18,10 +18,10 @@ import android.widget.LinearLayout;
 
 import com.astuetz.PagerSlidingTabStrip;
 
-import inc.flide.android.emoji_keyboard.InputMethodServiceProxy;
+import inc.flide.emoji_keyboard.InputMethodServiceProxy;
 import inc.flide.android.emoji_keyboard.R;
-import inc.flide.android.emoji_keyboard.adapter.EmojiPagerAdapter;
-import inc.flide.android.emoji_keyboard.constants.Constants;
+import inc.flide.emoji_keyboard.adapter.EmojiPagerAdapter;
+import inc.flide.emoji_keyboard.constants.Constants;
 
 
 public class EmojiKeyboardView extends View implements SharedPreferences.OnSharedPreferenceChangeListener{

@@ -1,4 +1,4 @@
-package inc.flide.android.emoji_keyboard.sqlite;
+package inc.flide.emoji_keyboard.sqlite;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,8 +11,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.orhanobut.logger.Logger;
 
-import inc.flide.android.emoji_keyboard.utilities.CategorizedEmojiList;
-import inc.flide.android.emoji_keyboard.utilities.Emoji;
+import inc.flide.emoji_keyboard.utilities.CategorizedEmojiList;
+import inc.flide.emoji_keyboard.utilities.Emoji;
 
 public class EmojiDataSource {
     private static final int NUM_RECENTS_TO_SAVE = 60;

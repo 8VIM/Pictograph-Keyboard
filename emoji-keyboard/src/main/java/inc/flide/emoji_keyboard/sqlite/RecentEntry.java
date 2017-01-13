@@ -1,6 +1,6 @@
-package inc.flide.android.emoji_keyboard.sqlite;
+package inc.flide.emoji_keyboard.sqlite;
 
-import inc.flide.android.emoji_keyboard.utilities.Emoji;
+import inc.flide.emoji_keyboard.utilities.Emoji;
 
 public class RecentEntry {
 

@@ -1,11 +1,11 @@
-package inc.flide.android.emoji_keyboard.view;
+package inc.flide.emoji_keyboard.view;
 
 import android.view.View;
 import android.widget.PopupWindow;
 
-import inc.flide.android.emoji_keyboard.InputMethodServiceProxy;
-import inc.flide.android.emoji_keyboard.sqlite.EmojiDataSource;
-import inc.flide.android.emoji_keyboard.utilities.Emoji;
+import inc.flide.emoji_keyboard.InputMethodServiceProxy;
+import inc.flide.emoji_keyboard.sqlite.EmojiDataSource;
+import inc.flide.emoji_keyboard.utilities.Emoji;
 
 public class PopupWindowEmojiOnClickListner extends EmojiOnClickListner {
 
