@@ -1,5 +1,6 @@
 package inc.flide.android.emoji_keyboard.adapter;
 
+import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.util.TypedValue;
@@ -14,7 +15,7 @@ import android.widget.PopupWindow;
 import java.util.ArrayList;
 import java.util.List;
 
-import inc.flide.android.emoji_keyboard.EmojiKeyboardService;
+import inc.flide.android.emoji_keyboard.InputMethodServiceProxy;
 import inc.flide.android.emoji_keyboard.R;
 import inc.flide.android.emoji_keyboard.sqlite.EmojiDataSource;
 import inc.flide.android.emoji_keyboard.utilities.CategorizedEmojiList;
@@ -22,11 +23,11 @@ import inc.flide.android.emoji_keyboard.utilities.Emoji;
 
 public abstract class BaseEmojiAdapter extends BaseAdapter {
 
-    protected EmojiKeyboardService emojiKeyboardService;
+    protected InputMethodServiceProxy emojiKeyboardService;
     protected List<Emoji> emojiList;
     private static String filePrefix;
 
-    public BaseEmojiAdapter(EmojiKeyboardService emojiKeyboardService ) {
+    public BaseEmojiAdapter(InputMethodServiceProxy emojiKeyboardService ) {
         this.emojiKeyboardService = emojiKeyboardService;
     }
 
@@ -43,8 +44,8 @@ public abstract class BaseEmojiAdapter extends BaseAdapter {
 
         final ImageView imageView;
         if (convertView == null) {
-            imageView = new ImageView(emojiKeyboardService);
-            int scale = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, emojiKeyboardService.getResources().getDisplayMetrics());
+            imageView = new ImageView(emojiKeyboardService.getContext());
+            int scale = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, emojiKeyboardService.getContext().getResources().getDisplayMetrics());
             imageView.setPadding(scale, (int)(scale*1.2), scale, (int)(scale * 1.2));
             imageView.setAdjustViewBounds(true);
         } else {
@@ -53,8 +54,8 @@ public abstract class BaseEmojiAdapter extends BaseAdapter {
         }
 
         Drawable[] layers = new Drawable[2];
-        layers[0] = emojiKeyboardService.getResources().getDrawable(getIconIdBasedOnPosition(position));
-        layers[1] = emojiKeyboardService.getResources().getDrawable(R.drawable.ic_diversityindicator);
+        layers[0] = emojiKeyboardService.getContext().getResources().getDrawable(getIconIdBasedOnPosition(position));
+        layers[1] = emojiKeyboardService.getContext().getResources().getDrawable(R.drawable.ic_diversityindicator);
 
         imageView.setImageResource(getIconIdBasedOnPosition(position));
         imageView.setBackgroundResource(R.drawable.btn_background);
@@ -64,7 +65,7 @@ public abstract class BaseEmojiAdapter extends BaseAdapter {
             public void onClick(View v) {
                 Emoji emoji = emojiList.get(position);
                 emojiKeyboardService.sendText(emoji.getUnicodeJavaString());
-                EmojiDataSource.getInstance(emojiKeyboardService).addEntry(emoji);
+                EmojiDataSource.getInstance(emojiKeyboardService.getContext()).addEntry(emoji);
             }
         });
 
@@ -85,8 +86,8 @@ public abstract class BaseEmojiAdapter extends BaseAdapter {
     }
 
     private void setupDiversityEmojiPopup(ImageView imageView, int position) {
-        LayoutInflater layoutInflater = (LayoutInflater)emojiKeyboardService
-                                            .getSystemService(emojiKeyboardService.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater layoutInflater = (LayoutInflater)emojiKeyboardService.getContext()
+                                            .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View popupView = layoutInflater.inflate(R.layout.popup, null);
         final PopupWindow popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
@@ -123,8 +124,8 @@ public abstract class BaseEmojiAdapter extends BaseAdapter {
         List<ImageView> diversityEmojiImageViewList = new ArrayList<>();
 
         for (final Emoji emoji: diversityEmojiList) {
-            ImageView imageView = new ImageView(emojiKeyboardService);
-            int scale = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, emojiKeyboardService.getResources().getDisplayMetrics());
+            ImageView imageView = new ImageView(emojiKeyboardService.getContext());
+            int scale = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, emojiKeyboardService.getContext().getResources().getDisplayMetrics());
             imageView.setPadding(scale, (int)(scale*1.2), scale, (int)(scale * 1.2));
             imageView.setAdjustViewBounds(true);
             imageView.setImageResource(getIconIdBasedOnEmoji(emoji));
@@ -134,7 +135,7 @@ public abstract class BaseEmojiAdapter extends BaseAdapter {
                 @Override
                 public void onClick(View v) {
                     emojiKeyboardService.sendText(emoji.getUnicodeJavaString());
-                    EmojiDataSource.getInstance(emojiKeyboardService).addEntry(emoji);
+                    EmojiDataSource.getInstance(emojiKeyboardService.getContext()).addEntry(emoji);
                     popupWindow.dismiss();
                 }
             });
@@ -155,15 +156,12 @@ public abstract class BaseEmojiAdapter extends BaseAdapter {
     }
 
     protected int getDrawableResourceId(String drawableName) {
-        return emojiKeyboardService.getResources().getIdentifier(drawableName, "drawable", emojiKeyboardService.getPackageName());
+        return emojiKeyboardService.getContext().getResources()
+                .getIdentifier(drawableName, "drawable", emojiKeyboardService.getContext().getPackageName());
     }
 
     public int getIconIdBasedOnPosition(int position) {
         return getIconIdBasedOnEmoji(emojiList.get(position));
-    }
-
-    public String getEmojiUnicodeString(int position) {
-        return emojiList.get(position).getUnicodeJavaString();
     }
 
     public static void setFilePrefix(String prefix) {

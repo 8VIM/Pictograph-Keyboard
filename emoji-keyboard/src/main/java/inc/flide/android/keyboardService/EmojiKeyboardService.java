@@ -1,8 +1,7 @@
-package inc.flide.android.emoji_keyboard;
+package inc.flide.android.keyboardService;
 
 import android.content.Context;
 import android.inputmethodservice.InputMethodService;
-import android.os.Build;
 import android.os.IBinder;
 import android.os.SystemClock;
 import android.os.Vibrator;
@@ -13,11 +12,12 @@ import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import inc.flide.android.emoji_keyboard.InputMethodServiceProxy;
 import inc.flide.android.emoji_keyboard.view.EmojiKeyboardView;
 
 import static inc.flide.android.emoji_keyboard.R.*;
 
-public class EmojiKeyboardService extends InputMethodService {
+public class EmojiKeyboardService extends InputMethodService implements InputMethodServiceProxy {
 
     private EmojiKeyboardView emojiKeyboardView;
 
@@ -26,20 +26,12 @@ public class EmojiKeyboardService extends InputMethodService {
     private InputMethodManager previousInputMethodManager;
     private IBinder iBinder;
 
-    private static Context staticApplicationContext;
-
-    public static Context getStaticApplicationContext() {
-        return staticApplicationContext;
-    }
-
     public EmojiKeyboardService() {
         super();
     }
 
     @Override
     public View onCreateInputView() {
-
-        staticApplicationContext = getApplicationContext();
 
         previousInputMethodManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
         iBinder = this.getWindow().getWindow().getAttributes().token;
@@ -58,6 +50,11 @@ public class EmojiKeyboardService extends InputMethodService {
 
     public void sendText(String text) {
         inputConnection.commitText(text, 1);
+    }
+
+    @Override
+    public Context getContext() {
+        return this;
     }
 
     public void sendDownKeyEvent(int keyEventCode, int flags) {

@@ -4,16 +4,13 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 
-import inc.flide.android.emoji_keyboard.EmojiKeyboardService;
+import inc.flide.android.emoji_keyboard.InputMethodServiceProxy;
 import inc.flide.android.emoji_keyboard.sqlite.EmojiDataSource;
-import inc.flide.android.emoji_keyboard.sqlite.RecentEntry;
-
-import java.util.ArrayList;
 
 public class RecentEmojiAdapter extends BaseEmojiAdapter {
 
     public RecentEmojiAdapter(Context context) {
-        super((EmojiKeyboardService) context);
+        super((InputMethodServiceProxy) context);
         dataSource = EmojiDataSource.getInstance(context);
         dataSource.openInReadWriteMode();
         this.emojiList = dataSource.getAllEntriesInDescendingOrderOfCount();

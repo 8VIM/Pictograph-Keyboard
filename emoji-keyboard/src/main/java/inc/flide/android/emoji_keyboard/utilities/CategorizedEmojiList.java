@@ -1,7 +1,5 @@
 package inc.flide.android.emoji_keyboard.utilities;
 
-import com.orhanobut.logger.Logger;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;

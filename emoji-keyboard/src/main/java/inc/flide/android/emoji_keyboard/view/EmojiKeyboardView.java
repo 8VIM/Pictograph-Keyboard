@@ -18,7 +18,7 @@ import android.widget.LinearLayout;
 
 import com.astuetz.PagerSlidingTabStrip;
 
-import inc.flide.android.emoji_keyboard.EmojiKeyboardService;
+import inc.flide.android.emoji_keyboard.InputMethodServiceProxy;
 import inc.flide.android.emoji_keyboard.R;
 import inc.flide.android.emoji_keyboard.adapter.EmojiPagerAdapter;
 import inc.flide.android.emoji_keyboard.constants.Constants;
@@ -33,7 +33,7 @@ public class EmojiKeyboardView extends View implements SharedPreferences.OnShare
     Button deleteButton;
 
     private EmojiPagerAdapter emojiPagerAdapter;
-    private EmojiKeyboardService emojiKeyboardService;
+    private InputMethodServiceProxy emojiKeyboardService;
 
     public EmojiKeyboardView(Context context) {
         super(context);
@@ -52,7 +52,7 @@ public class EmojiKeyboardView extends View implements SharedPreferences.OnShare
 
     private void initialize(Context context) {
 
-        emojiKeyboardService = (EmojiKeyboardService) context;
+        emojiKeyboardService = (InputMethodServiceProxy) context;
 
         LayoutInflater inflater = (LayoutInflater)   getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
