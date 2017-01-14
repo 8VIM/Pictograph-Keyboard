@@ -13,6 +13,8 @@
     <string name="settings">Settings</string>
 
     <string name="eraseToTheLeft">&#x232B;</string>
+    <string name="keyboardSymbol">&#x2328;</string>
+
 
     <string name="emoji_keyboard_color">Emoji Keyboard Color</string>
 

@@ -2,5 +2,5 @@
 
 <input-method xmlns:android="http://schemas.android.com/apk/res/android"
               android:isDefault="false"
-              android:settingsActivity="com.klinker.android.emoji_keyboard.MainSettings">
+              android:settingsActivity="inc.flide.settings.SharedPreferencesSetting">
 </input-method>

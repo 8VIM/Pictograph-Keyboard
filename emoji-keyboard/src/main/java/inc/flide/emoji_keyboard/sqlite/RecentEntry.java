@@ -2,10 +2,10 @@ package inc.flide.emoji_keyboard.sqlite;
 
 import inc.flide.emoji_keyboard.utilities.Emoji;
 
-public class RecentEntry {
+class RecentEntry {
 
-    private long id;
-    private Emoji emoji;
+    private final long id;
+    private final Emoji emoji;
     private long count;
 
     public void incrementUsageCountByOne() {
@@ -26,19 +26,8 @@ public class RecentEntry {
         return count;
     }
 
-    public void setCount(long count) {
-        this.count = count;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public Emoji getEmoji() {
         return emoji;
     }
 
-    public void setEmoji(Emoji emoji) {
-        this.emoji = emoji;
-    }
 }

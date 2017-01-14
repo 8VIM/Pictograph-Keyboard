@@ -11,18 +11,18 @@ public class CategorizedEmojiList {
 
     private static CategorizedEmojiList instance = null;
 
-    private List<Emoji> people = new ArrayList<>();
-    private List<Emoji> nature = new ArrayList<>();
-    private List<Emoji> activity = new ArrayList<>();
-    private List<Emoji> food = new ArrayList<>();
-    private List<Emoji> travel = new ArrayList<>();
-    private List<Emoji> objects = new ArrayList<>();
-    private List<Emoji> symbols = new ArrayList<>();
-    private List<Emoji> flags = new ArrayList<>();
-    private List<Emoji> modifier = new ArrayList<>();
-    private List<Emoji> regional = new ArrayList<>();
+    private final List<Emoji> people = new ArrayList<>();
+    private final List<Emoji> nature = new ArrayList<>();
+    private final List<Emoji> activity = new ArrayList<>();
+    private final List<Emoji> food = new ArrayList<>();
+    private final List<Emoji> travel = new ArrayList<>();
+    private final List<Emoji> objects = new ArrayList<>();
+    private final List<Emoji> symbols = new ArrayList<>();
+    private final List<Emoji> flags = new ArrayList<>();
+    private final List<Emoji> modifier = new ArrayList<>();
+    private final List<Emoji> regional = new ArrayList<>();
 
-    public static final CategorizedEmojiList getInstance() {
+    public static CategorizedEmojiList getInstance() {
         if (instance == null) {
             instance = new CategorizedEmojiList();
         }
@@ -114,7 +114,7 @@ public class CategorizedEmojiList {
         Collections.sort(regional, emojiComparator);
     }
 
-    private Comparator<Emoji> emojiComparator = new Comparator<Emoji>() {
+    private final Comparator<Emoji> emojiComparator = new Comparator<Emoji>() {
         @Override
         public int compare(Emoji first, Emoji second) {
             return first.getEmojiOrder() - second.getEmojiOrder();
@@ -160,8 +160,7 @@ public class CategorizedEmojiList {
 
     public Emoji searchForEmojiIgnoreModifier(String unicodeHexValue, String category) {
         String unicodeHexValueWithoutModifier = removeModifierIfPresent(unicodeHexValue);
-        Emoji returnValue = searchForEmoji(unicodeHexValueWithoutModifier, category);
-        return returnValue;
+        return searchForEmoji(unicodeHexValueWithoutModifier, category);
     }
 
     public String removeModifierIfPresent(String unicodeHexValue) {

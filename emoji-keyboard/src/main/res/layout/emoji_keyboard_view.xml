@@ -16,7 +16,7 @@
             android:layout_height="48dp"
             android:background="@drawable/btn_background"
             android:scaleType="fitCenter"
-            android:text="&#x2328;" />
+            android:text="@string/keyboardSymbol" />
 
 
         <com.astuetz.PagerSlidingTabStrip

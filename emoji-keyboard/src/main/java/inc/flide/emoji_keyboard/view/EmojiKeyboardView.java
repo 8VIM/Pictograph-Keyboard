@@ -27,10 +27,9 @@ import inc.flide.keyboard.R;
 public class EmojiKeyboardView extends View implements SharedPreferences.OnSharedPreferenceChangeListener{
 
     private ViewPager viewPager;
-    private PagerSlidingTabStrip pagerSlidingTabStrip;
     private LinearLayout layout;
 
-    Button deleteButton;
+    private Button deleteButton;
 
     private EmojiPagerAdapter emojiPagerAdapter;
     private InputMethodServiceProxy emojiKeyboardService;
@@ -60,7 +59,7 @@ public class EmojiKeyboardView extends View implements SharedPreferences.OnShare
 
         viewPager = (ViewPager) layout.findViewById(R.id.emojiKeyboard);
 
-        pagerSlidingTabStrip = (PagerSlidingTabStrip) layout.findViewById(R.id.emojiCategorytab);
+        PagerSlidingTabStrip pagerSlidingTabStrip = (PagerSlidingTabStrip) layout.findViewById(R.id.emojiCategorytab);
 
         pagerSlidingTabStrip.setIndicatorColor(getResources().getColor(R.color.pager_color));
 
@@ -80,11 +79,6 @@ public class EmojiKeyboardView extends View implements SharedPreferences.OnShare
 
     public View getView() {
         return layout;
-    }
-
-    public void notifyDataSetChanged() {
-        emojiPagerAdapter.notifyDataSetChanged();
-        viewPager.refreshDrawableState();
     }
 
     private void setupDeleteButton() {
@@ -108,7 +102,7 @@ public class EmojiKeyboardView extends View implements SharedPreferences.OnShare
     }
 
     private final Handler longDeleteButtonPressHandler = new Handler();
-    private Runnable longDeleteButtonPressRunnable = new Runnable() {
+    private final Runnable longDeleteButtonPressRunnable = new Runnable() {
         @Override
         public void run() {
             emojiKeyboardService.sendDownAndUpKeyEvent(KeyEvent.KEYCODE_DEL, 0);
@@ -130,12 +124,11 @@ public class EmojiKeyboardView extends View implements SharedPreferences.OnShare
         });
     }
 
-    private int width;
     private int height;
     @Override
     public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 
-        width = MeasureSpec.getSize(widthMeasureSpec);
+        int width = MeasureSpec.getSize(widthMeasureSpec);
         height = MeasureSpec.getSize(heightMeasureSpec);
 
         Log.d("emojiKeyboardView", width +" : " + height);
@@ -155,8 +148,8 @@ public class EmojiKeyboardView extends View implements SharedPreferences.OnShare
 
     public static class KeyboardSinglePageView {
 
-        private Context context;
-        private BaseAdapter adapter;
+        private final Context context;
+        private final BaseAdapter adapter;
 
         public KeyboardSinglePageView(Context context, BaseAdapter adapter) {
             this.context = context;

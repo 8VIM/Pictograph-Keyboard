@@ -21,8 +21,6 @@ import inc.flide.keyboard.R;
 
 public class EmojiKeyboardService extends InputMethodService implements InputMethodServiceProxy {
 
-    private EmojiKeyboardView emojiKeyboardView;
-
     private InputConnection inputConnection;
 
     private InputMethodManager previousInputMethodManager;
@@ -40,7 +38,7 @@ public class EmojiKeyboardService extends InputMethodService implements InputMet
         previousInputMethodManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
         iBinder = this.getWindow().getWindow().getAttributes().token;
 
-        emojiKeyboardView = (EmojiKeyboardView) getLayoutInflater()
+        EmojiKeyboardView emojiKeyboardView = (EmojiKeyboardView) getLayoutInflater()
                 .inflate(R.layout.emoji_keyboard_layout, null);
 
         return emojiKeyboardView.getView();
@@ -61,7 +59,7 @@ public class EmojiKeyboardService extends InputMethodService implements InputMet
         return this;
     }
 
-    public void sendDownKeyEvent(int keyEventCode, int flags) {
+    private void sendDownKeyEvent(int keyEventCode, int flags) {
         inputConnection.sendKeyEvent(
                 new KeyEvent(
                         SystemClock.uptimeMillis(),
@@ -74,7 +72,7 @@ public class EmojiKeyboardService extends InputMethodService implements InputMet
         );
     }
 
-    public void sendUpKeyEvent(int keyEventCode, int flags) {
+    private void sendUpKeyEvent(int keyEventCode, int flags) {
         inputConnection.sendKeyEvent(
                 new KeyEvent(
                         SystemClock.uptimeMillis(),

@@ -9,8 +9,6 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.orhanobut.logger.Logger;
-
 import inc.flide.emoji_keyboard.utilities.CategorizedEmojiList;
 import inc.flide.emoji_keyboard.utilities.Emoji;
 
@@ -21,11 +19,11 @@ public class EmojiDataSource {
 
     // Database fields
     private SQLiteDatabase database;
-    private EmojiSQLiteHelper databaseHelper;
-    private String[] allColumns = { EmojiSQLiteHelper.COLUMN_ID,
+    private final EmojiSQLiteHelper databaseHelper;
+    private final String[] allColumns = { EmojiSQLiteHelper.COLUMN_ID,
             EmojiSQLiteHelper.COLUMN_UNICODE_HEX_CODE, EmojiSQLiteHelper.COLUMN_CATEGORY, EmojiSQLiteHelper.COLUMN_COUNT };
 
-    public static final EmojiDataSource getInstance(Context context) {
+    public static EmojiDataSource getInstance(Context context) {
         if (instance == null) {
             instance = new EmojiDataSource(context);
         }
@@ -73,17 +71,12 @@ public class EmojiDataSource {
             incrementExistingEntryCountbyOne(newRecentEntry);
         }
     }
-    private RecentEntry insertNewEntry(Emoji emoji) {
+    private long insertNewEntry(Emoji emoji) {
 
         int initialCount = 0;
         ContentValues values = getFilledContentValuesObject(emoji.getUnicodeHexcode(), emoji.getCategory().name(), initialCount);
-        long insertId = database.insert(EmojiSQLiteHelper.TABLE_RECENTS, null, values);
 
-        if (insertId == -1) {
-            return null;
-        } else {
-            return new RecentEntry(emoji, initialCount, insertId);
-        }
+        return database.insert(EmojiSQLiteHelper.TABLE_RECENTS, null, values);
     }
 
     private void incrementExistingEntryCountbyOne(RecentEntry entry) {
@@ -92,15 +85,11 @@ public class EmojiDataSource {
         database.update(EmojiSQLiteHelper.TABLE_RECENTS, values, EmojiSQLiteHelper.COLUMN_ID +"="+ entry.getId(), null);
     }
 
-    public boolean deleteEntryWithId(long id) {
+    private boolean deleteEntryWithId(long id) {
 
         int rowsDeleted = database.delete(EmojiSQLiteHelper.TABLE_RECENTS, EmojiSQLiteHelper.COLUMN_ID + " = " + id, null);
 
-        if(rowsDeleted == 0) {
-            return false;
-        } else {
-            return true;
-        }
+        return rowsDeleted != 0;
     }
 
     public List<Emoji> getAllEntriesInDescendingOrderOfCount() {

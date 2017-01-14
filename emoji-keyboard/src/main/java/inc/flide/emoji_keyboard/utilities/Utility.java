@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Utility {
 
-    public static final String convertStringToUnicode(String unicode) {
+    public static String convertStringToUnicode(String unicode) {
 
         String[] unicodeParts = unicode.split("-");
         int[] codePoints = new int[unicodeParts.length];
@@ -23,15 +23,6 @@ public class Utility {
         int count = unicodeParts.length;
 
         return new String(codePoints, offset, count);
-    }
-
-    public static final ArrayList<Integer> initArrayList(int... ints) {
-        ArrayList<Integer> list = new ArrayList<Integer>();
-        for (int i : ints)
-        {
-            list.add(i);
-        }
-        return list;
     }
 
     public static List<Emoji> loadEmojiData(Resources resources, String packageName) {
@@ -52,10 +43,10 @@ public class Utility {
         }
         finally {
             try {
-                inputStream.close();
-            } catch (NullPointerException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
+                if(inputStream != null) {
+                    inputStream.close();
+                }
+            } catch (NullPointerException | IOException e) {
                 e.printStackTrace();
             }
         }

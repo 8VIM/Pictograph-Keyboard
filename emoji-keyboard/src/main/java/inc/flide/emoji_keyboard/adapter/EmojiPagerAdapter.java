@@ -31,9 +31,9 @@ public class EmojiPagerAdapter extends PagerAdapter implements PagerSlidingTabSt
                                 R.drawable.ic_emoji_category_symbols,
                                 R.drawable.ic_emoji_category_flags};
 
-    private ViewPager pager;
-    private ArrayList<View> pages;
-    private int keyboardHeight;
+    private final ViewPager pager;
+    private final ArrayList<View> pages;
+    private final int keyboardHeight;
 
     public EmojiPagerAdapter(Context context, ViewPager pager, int keyboardHeight) {
         super();
@@ -43,7 +43,7 @@ public class EmojiPagerAdapter extends PagerAdapter implements PagerSlidingTabSt
 
         this.pager = pager;
         this.keyboardHeight = keyboardHeight;
-        this.pages = new ArrayList<View>();
+        this.pages = new ArrayList<>();
 
         BaseEmojiAdapter.setFilePrefix(getPreferedIconSet());
         pages.add(new EmojiKeyboardView.KeyboardSinglePageView(context, new RecentEmojiAdapter(context)).getView());

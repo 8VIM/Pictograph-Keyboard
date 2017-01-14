@@ -3,7 +3,7 @@ package inc.flide.emoji_keyboard;
 import android.content.Context;
 
 public interface InputMethodServiceProxy {
-    void sendDownAndUpKeyEvent(int keycodeDel, int i);
+    void sendDownAndUpKeyEvent(int keyCode, int flags);
 
     void switchToPreviousInputMethod();
 

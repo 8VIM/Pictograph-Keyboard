@@ -12,19 +12,19 @@ import java.util.List;
 
 import inc.flide.emoji_keyboard.InputMethodServiceProxy;
 import inc.flide.emoji_keyboard.utilities.Emoji;
-import inc.flide.emoji_keyboard.view.EmojiOnClickListner;
-import inc.flide.emoji_keyboard.view.EmojiOnLongClickListner;
+import inc.flide.emoji_keyboard.onclicklisteners.EmojiOnClickListner;
+import inc.flide.emoji_keyboard.onclicklisteners.EmojiOnLongClickListner;
 import inc.flide.keyboard.R;
 
 public abstract class BaseEmojiAdapter extends BaseAdapter {
 
-    protected static InputMethodServiceProxy emojiKeyboardService;
+    private static InputMethodServiceProxy emojiKeyboardService;
     private static String filePrefix;
 
     protected List<Emoji> emojiList;
 
     public BaseEmojiAdapter(InputMethodServiceProxy emojiKeyboardService ) {
-        this.emojiKeyboardService = emojiKeyboardService;
+        BaseEmojiAdapter.emojiKeyboardService = emojiKeyboardService;
     }
 
     @Override
@@ -52,7 +52,7 @@ public abstract class BaseEmojiAdapter extends BaseAdapter {
             imageView.setImageDrawable(layerDrawable);
             imageView.setLongClickable(true);
 
-            imageView.setOnLongClickListener(new EmojiOnLongClickListner(emojiList.get(position), emojiKeyboardService));
+            imageView.setOnLongClickListener(new EmojiOnLongClickListner(emojiList.get(position), emojiKeyboardService, parent));
         }
         return imageView;
     }

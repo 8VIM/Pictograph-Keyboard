@@ -13,7 +13,7 @@ public class RecentEmojiAdapter extends BaseEmojiAdapter {
         dataSource.openInReadWriteMode();
     }
 
-    private EmojiDataSource dataSource;
+    private final EmojiDataSource dataSource;
 
     @Override
     public int getCount() {

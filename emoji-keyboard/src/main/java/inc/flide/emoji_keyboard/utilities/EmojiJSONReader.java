@@ -5,7 +5,6 @@ import android.util.JsonReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,20 +12,20 @@ import inc.flide.emoji_keyboard.constants.EmojiCategory;
 
 public class EmojiJSONReader {
 
-    public static final String JSON_TAG_UNICODE = "unicode";
-    public static final String JSON_TAG_UNICODE_ALT = "unicode_alt";
-    public static final String JSON_TAG_CODE_DECIMAL = "code_decimal";
-    public static final String JSON_TAG_NAME = "name";
-    public static final String JSON_TAG_SHORTNAME = "shortname";
-    public static final String JSON_TAG_CATEGORY = "category";
-    public static final String JSON_TAG_EMOJI_ORDER = "emoji_order";
-    public static final String JSON_TAG_ALIASES = "aliases";
-    public static final String JSON_TAG_ALIASES_ASCII = "aliases_ascii";
-    public static final String JSON_TAG_KEYWORDS = "keywords";
+    private static final String JSON_TAG_UNICODE = "unicode";
+    private static final String JSON_TAG_UNICODE_ALT = "unicode_alt";
+    private static final String JSON_TAG_CODE_DECIMAL = "code_decimal";
+    private static final String JSON_TAG_NAME = "name";
+    private static final String JSON_TAG_SHORTNAME = "shortname";
+    private static final String JSON_TAG_CATEGORY = "category";
+    private static final String JSON_TAG_EMOJI_ORDER = "emoji_order";
+    private static final String JSON_TAG_ALIASES = "aliases";
+    private static final String JSON_TAG_ALIASES_ASCII = "aliases_ascii";
+    private static final String JSON_TAG_KEYWORDS = "keywords";
 
     private JsonReader reader;
-    private InputStream inputStream;
-    public EmojiJSONReader (InputStream inputStream) throws UnsupportedEncodingException {
+    private final InputStream inputStream;
+    public EmojiJSONReader (InputStream inputStream) {
         this.inputStream = inputStream;
     }
 
@@ -39,13 +38,17 @@ public class EmojiJSONReader {
                 String shortname = reader.nextName();
                 Emoji emoji = readEmoji();
 
-                if (shortname.indexOf("_tone") == -1) {
+                if (!shortname.contains("_tone")) {
                     emojiList.add(emoji);
                 }
             }
             reader.endObject();
         } finally {
-            reader.close();
+            try {
+                reader.close();
+            } catch (IOException exception) {
+                //TODO
+            }
         }
         return emojiList;
     }
