@@ -35,7 +35,7 @@ public class EmojiDataSource {
         openInReadWriteMode();
     }
 
-    public void openInReadWriteMode() throws SQLException {
+    private void openInReadWriteMode() throws SQLException {
         database = databaseHelper.getWritableDatabase();
     }
 
@@ -57,7 +57,13 @@ public class EmojiDataSource {
         return getFilledContentValuesObject(recentEntry.getEmoji().getUnicodeHexcode(), recentEntry.getEmoji().getCategory().name(), recentEntry.getCount());
     }
 
+    private void checkForDatabaseAvailability() {
+        if(!database.isOpen()) {
+            this.openInReadWriteMode();
+        }
+    }
     public void addEntry(Emoji emoji) {
+        checkForDatabaseAvailability();
 
         Cursor cursor = database.query(EmojiSQLiteHelper.TABLE_RECENTS,
                 allColumns, EmojiSQLiteHelper.COLUMN_UNICODE_HEX_CODE + " = '" + CategorizedEmojiList.getInstance().removeModifierIfPresent(emoji.getUnicodeHexcode()) + "'", null,
@@ -93,10 +99,8 @@ public class EmojiDataSource {
     }
 
     public List<Emoji> getAllEntriesInDescendingOrderOfCount() {
+        checkForDatabaseAvailability();
         List<Emoji> recentEntries = new ArrayList<>();
-        if(!database.isOpen()) {
-            this.openInReadWriteMode();
-        }
         Cursor cursor = database.query(EmojiSQLiteHelper.TABLE_RECENTS,
                 allColumns, null, null, null, null, EmojiSQLiteHelper.COLUMN_COUNT + " * 1 DESC");
 

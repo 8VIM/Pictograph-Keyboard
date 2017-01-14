@@ -21,9 +21,14 @@ public class EmojiOnClickListner implements View.OnClickListener {
     public void onClick(View view) {
         inputMethodService.sendText(emoji.getUnicodeJavaString());
 
-        EmojiDataSource.getInstance(inputMethodService.getContext())
-                .addEntry(
-                    CategorizedEmojiList.getInstance().searchForEmojiIgnoreModifier(emoji.getUnicodeHexcode(), emoji.getCategory().toString())
-                );
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                EmojiDataSource.getInstance(inputMethodService.getContext())
+                        .addEntry( CategorizedEmojiList.getInstance()
+                                .searchForEmojiIgnoreModifier(emoji.getUnicodeHexcode(), emoji.getCategory().toString())
+                        );
+            }
+        }).start();
     }
 }
