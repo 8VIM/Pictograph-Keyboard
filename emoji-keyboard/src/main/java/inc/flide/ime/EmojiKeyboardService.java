@@ -15,9 +15,9 @@ import android.widget.Toast;
 import com.orhanobut.logger.LogLevel;
 import com.orhanobut.logger.Logger;
 
+import inc.flide.emojiKeyboard.R;
 import inc.flide.emoji_keyboard.InputMethodServiceProxy;
 import inc.flide.emoji_keyboard.view.EmojiKeyboardView;
-import inc.flide.keyboard.R;
 
 public class EmojiKeyboardService extends InputMethodService implements InputMethodServiceProxy {
 

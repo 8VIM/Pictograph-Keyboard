@@ -10,11 +10,11 @@ import android.widget.ImageView;
 
 import java.util.List;
 
+import inc.flide.emojiKeyboard.R;
 import inc.flide.emoji_keyboard.InputMethodServiceProxy;
 import inc.flide.emoji_keyboard.utilities.Emoji;
 import inc.flide.emoji_keyboard.onclicklisteners.EmojiOnClickListner;
 import inc.flide.emoji_keyboard.onclicklisteners.EmojiOnLongClickListner;
-import inc.flide.keyboard.R;
 
 public abstract class BaseEmojiAdapter extends BaseAdapter {
 
