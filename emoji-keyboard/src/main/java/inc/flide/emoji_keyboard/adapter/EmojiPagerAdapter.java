@@ -12,9 +12,9 @@ import com.astuetz.PagerSlidingTabStrip;
 
 import java.util.ArrayList;
 
-import inc.flide.android.emoji_keyboard.R;
 import inc.flide.emoji_keyboard.utilities.CategorizedEmojiList;
-import inc.flide.android.settings.MainSettings;
+import inc.flide.keyboard.R;
+import inc.flide.settings.SharedPreferencesSetting;
 import inc.flide.emoji_keyboard.utilities.Utility;
 import inc.flide.emoji_keyboard.view.EmojiKeyboardView;
 
@@ -87,6 +87,6 @@ public class EmojiPagerAdapter extends PagerAdapter implements PagerSlidingTabSt
 
     private String getPreferedIconSet() {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(pager.getContext());
-        return sharedPreferences.getString(MainSettings.CHANGE_ICON_SET_KEY, MainSettings.CHANGE_ICON_SET_VALUE_DEFAULT);
+        return sharedPreferences.getString(SharedPreferencesSetting.CHANGE_ICON_SET_KEY, SharedPreferencesSetting.CHANGE_ICON_SET_VALUE_DEFAULT);
     }
 }

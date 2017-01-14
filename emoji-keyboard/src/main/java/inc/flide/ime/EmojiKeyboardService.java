@@ -1,4 +1,4 @@
-package inc.flide.android.keyboardService;
+package inc.flide.ime;
 
 import android.content.Context;
 import android.inputmethodservice.InputMethodService;
@@ -17,8 +17,7 @@ import com.orhanobut.logger.Logger;
 
 import inc.flide.emoji_keyboard.InputMethodServiceProxy;
 import inc.flide.emoji_keyboard.view.EmojiKeyboardView;
-
-import static inc.flide.android.emoji_keyboard.R.*;
+import inc.flide.keyboard.R;
 
 public class EmojiKeyboardService extends InputMethodService implements InputMethodServiceProxy {
 
@@ -42,7 +41,7 @@ public class EmojiKeyboardService extends InputMethodService implements InputMet
         iBinder = this.getWindow().getWindow().getAttributes().token;
 
         emojiKeyboardView = (EmojiKeyboardView) getLayoutInflater()
-                .inflate(layout.emoji_keyboard_layout, null);
+                .inflate(R.layout.emoji_keyboard_layout, null);
 
         return emojiKeyboardView.getView();
     }

@@ -13,11 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import inc.flide.emoji_keyboard.InputMethodServiceProxy;
-import inc.flide.android.emoji_keyboard.R;
 import inc.flide.emoji_keyboard.adapter.BaseEmojiAdapter;
 import inc.flide.emoji_keyboard.utilities.CategorizedEmojiList;
-import inc.flide.emoji_keyboard.sqlite.EmojiDataSource;
 import inc.flide.emoji_keyboard.utilities.Emoji;
+import inc.flide.keyboard.R;
 
 public class EmojiOnLongClickListner implements View.OnLongClickListener {
 
