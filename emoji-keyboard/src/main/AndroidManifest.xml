@@ -7,7 +7,7 @@
 
     <application
             android:allowBackup="false"
-            android:icon="@drawable/application_icon"
+            android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
             android:hardwareAccelerated="true">
 

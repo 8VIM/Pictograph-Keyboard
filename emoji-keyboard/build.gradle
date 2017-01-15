@@ -22,18 +22,10 @@ android {
         versionCode 10
         versionName "2.0.0"
     }
-    signingConfigs {
-        release {
-            storeFile file("../emoji-keyboard.jks")
-            storePassword "notforyou"
-            keyAlias "emoji-keyboard"
-            keyPassword "notforyou"
-        }
-    }
+
     buildTypes {
         release {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
-            signingConfig signingConfigs.release
         }
         debug {
             debuggable true
