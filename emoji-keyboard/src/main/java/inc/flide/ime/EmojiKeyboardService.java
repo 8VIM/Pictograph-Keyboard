@@ -92,9 +92,6 @@ public class EmojiKeyboardService extends InputMethodService implements InputMet
 
     public void switchToPreviousInputMethod() {
 
-        Vibrator vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        vib.vibrate(25);
-
         try {
             previousInputMethodManager.switchToLastInputMethod(iBinder);
         } catch (Throwable t) { // java.lang.NoSuchMethodError if API_level<11
