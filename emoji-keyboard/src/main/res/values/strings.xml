@@ -13,7 +13,9 @@
 
     <string name="setting_change_icon_set_entry_emojione">EmojiOne</string>
     <string name="setting_change_icon_set_entry_emojione_bw">EmojiOne \'B&amp;W\'</string>
+    <string name="setting_change_icon_set_entry_google_noto">Google Noto</string>
 
     <string name="setting_change_icon_set_value_emojione">emojione_emoji_</string>
     <string name="setting_change_icon_set_value_emojione_bw">emojione_emoji_bw_</string>
+    <string name="setting_change_icon_set_value_google_noto">google_noto_emoji_</string>
 </resources>
