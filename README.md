@@ -11,6 +11,7 @@ The current version of that app is a single keyboard, and can be downloaded from
 - [klinker24](https://github.com/klinker24) for his efforts in the project [Android-SlidingEmojiKeyboard](https://github.com/klinker24/Android-SlidingEmojiKeyboard) fork of which this project originally is.
 - [astuetz](https://github.com/astuetz) for his efforts in the project [PagerSlidingTabStrip](https://github.com/astuetz/PagerSlidingTabStrip).
 - [EmojiOne](https://emojione.com) for creating free and open source Emoji's for the community.
+- [googlei18n](https://github.com/googlei18n) for providing the free png resources for [Noto-Emoji](https://github.com/googlei18n/noto-emoji).
 
 
 ---

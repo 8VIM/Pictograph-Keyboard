@@ -1,25 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="emojiKeyboardColor">
-        <item>Light</item>
-        <item>Black</item>
-        <item>Dark</item>
-    </string-array>
-
-    <string-array name="emojiKeyboardColorSet">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-    </string-array>
-
     <string-array name="emojiIconsCategory">
         <item>@string/setting_change_icon_set_entry_emojione</item>
         <item>@string/setting_change_icon_set_entry_emojione_bw</item>
+        <item>@string/setting_change_icon_set_entry_google_noto</item>
     </string-array>
 
     <string-array name="emojiIconsCategoryValues">
         <item>@string/setting_change_icon_set_value_emojione</item>
         <item>@string/setting_change_icon_set_value_emojione_bw</item>
+        <item>@string/setting_change_icon_set_value_google_noto</item>
     </string-array>
 
 </resources>

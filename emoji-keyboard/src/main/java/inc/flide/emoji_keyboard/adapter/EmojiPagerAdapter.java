@@ -12,8 +12,8 @@ import com.astuetz.PagerSlidingTabStrip;
 
 import java.util.ArrayList;
 
+import inc.flide.emojiKeyboard.R;
 import inc.flide.emoji_keyboard.utilities.CategorizedEmojiList;
-import inc.flide.keyboard.R;
 import inc.flide.settings.SharedPreferencesSetting;
 import inc.flide.emoji_keyboard.utilities.Utility;
 import inc.flide.emoji_keyboard.view.EmojiKeyboardView;

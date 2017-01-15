@@ -3,7 +3,7 @@ package inc.flide.settings;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 
-import inc.flide.keyboard.R;
+import inc.flide.emojiKeyboard.R;
 
 public class SharedPreferencesSetting extends PreferenceActivity {
 

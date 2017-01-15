@@ -10,11 +10,11 @@ import android.widget.ImageView;
 
 import java.util.List;
 
+import inc.flide.emojiKeyboard.R;
 import inc.flide.emoji_keyboard.InputMethodServiceProxy;
 import inc.flide.emoji_keyboard.utilities.Emoji;
 import inc.flide.emoji_keyboard.onclicklisteners.EmojiOnClickListner;
 import inc.flide.emoji_keyboard.onclicklisteners.EmojiOnLongClickListner;
-import inc.flide.keyboard.R;
 
 public abstract class BaseEmojiAdapter extends BaseAdapter {
 
@@ -42,7 +42,7 @@ public abstract class BaseEmojiAdapter extends BaseAdapter {
 
         imageView.setOnClickListener(new EmojiOnClickListner(emojiList.get(position), emojiKeyboardService));
 
-        if (emojiList.get(position).isDiversityAvailable()) {
+        if (isDiversitySupported(position)) {
 
             Drawable[] layers = new Drawable[2];
             layers[0] = emojiKeyboardService.getContext().getResources().getDrawable(getIconIdBasedOnEmoji(emojiList.get(position)));
@@ -99,5 +99,14 @@ public abstract class BaseEmojiAdapter extends BaseAdapter {
 
     public static void setFilePrefix(String prefix) {
         filePrefix = prefix;
+    }
+
+    //TODO : A very bad temporary solution.
+    public boolean isDiversitySupported(int position) {
+       if(filePrefix.equals("emojione_emoji_bw_")){
+           return false;
+       } else {
+           return emojiList.get(position).isDiversityAvailable();
+       }
     }
 }

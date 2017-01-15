@@ -10,7 +10,6 @@ public class RecentEmojiAdapter extends BaseEmojiAdapter {
     public RecentEmojiAdapter(Context context) {
         super((InputMethodServiceProxy) context);
         dataSource = EmojiDataSource.getInstance(context);
-        dataSource.openInReadWriteMode();
     }
 
     private final EmojiDataSource dataSource;
@@ -24,7 +23,6 @@ public class RecentEmojiAdapter extends BaseEmojiAdapter {
     @Override
     protected void finalize() throws Throwable {
         super.finalize();
-
         dataSource.close();
     }
 }
