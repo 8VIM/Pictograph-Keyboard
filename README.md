@@ -10,6 +10,8 @@ The current version of that app is a single keyboard, and can be downloaded from
 #Thanks To
 - [klinker24](https://github.com/klinker24) for his efforts in the project [Android-SlidingEmojiKeyboard](https://github.com/klinker24/Android-SlidingEmojiKeyboard) fork of which this project originally is.
 - [astuetz](https://github.com/astuetz) for his efforts in the project [PagerSlidingTabStrip](https://github.com/astuetz/PagerSlidingTabStrip).
+- [a-student](https://github.com/a-student) for his efforts in the project [SvgToVectorDrawableConverter](https://github.com/a-student/SvgToVectorDrawableConverter).
+- [orhanobut](https://github.com/orhanobut) for his efforts in the project [Logger](https://github.com/orhanobut/logger).
 - [EmojiOne](https://emojione.com) for creating free and open source Emoji's for the community.
 - [googlei18n](https://github.com/googlei18n) for providing the free png resources for [Noto-Emoji](https://github.com/googlei18n/noto-emoji).
 
