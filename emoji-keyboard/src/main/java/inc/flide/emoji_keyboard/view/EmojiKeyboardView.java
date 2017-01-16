@@ -30,7 +30,6 @@ public class EmojiKeyboardView extends View implements SharedPreferences.OnShare
 
     private Button deleteButton;
 
-    private EmojiPagerAdapter emojiPagerAdapter;
     private InputMethodServiceProxy emojiKeyboardService;
 
     public EmojiKeyboardView(Context context) {
@@ -62,7 +61,7 @@ public class EmojiKeyboardView extends View implements SharedPreferences.OnShare
 
         pagerSlidingTabStrip.setIndicatorColor(getResources().getColor(R.color.pager_color));
 
-        emojiPagerAdapter = new EmojiPagerAdapter(context, viewPager, height);
+        EmojiPagerAdapter emojiPagerAdapter = new EmojiPagerAdapter(context, viewPager, height);
 
         viewPager.setAdapter(emojiPagerAdapter);
 
@@ -136,12 +135,10 @@ public class EmojiKeyboardView extends View implements SharedPreferences.OnShare
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-
-        Log.d("sharedPreferenceChange", "function called on change of shared preferences with key " + key);
         if (key.equals("icon_set")){
-            emojiPagerAdapter = new EmojiPagerAdapter(getContext(), viewPager, height);
+            EmojiPagerAdapter emojiPagerAdapter = new EmojiPagerAdapter(getContext(), viewPager, height);
             viewPager.setAdapter(emojiPagerAdapter);
-            this.invalidate();
+            viewPager.invalidate();
         }
     }
 
