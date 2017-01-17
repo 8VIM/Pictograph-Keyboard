@@ -36,8 +36,6 @@ public class Utility {
             emojiData = emojiJSONReader.loadEmojiData();
         } catch (UnsupportedEncodingException exception) {
             exception.printStackTrace();
-        } catch (IOException exception){
-            exception.printStackTrace();
         } catch(Exception exception){
             exception.printStackTrace();
         }

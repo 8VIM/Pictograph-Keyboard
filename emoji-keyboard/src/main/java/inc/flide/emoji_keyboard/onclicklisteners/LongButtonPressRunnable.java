@@ -1,7 +1,6 @@
 package inc.flide.emoji_keyboard.onclicklisteners;
 
 import android.os.Handler;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import inc.flide.emoji_keyboard.InputMethodServiceProxy;
@@ -11,8 +10,8 @@ public class LongButtonPressRunnable implements Runnable{
 
     private static Handler longButtonPressHandler;
     private static InputMethodServiceProxy inputMethodService;
-    private int keycode;
-    private ImageButton button;
+    private final int keycode;
+    private final ImageButton button;
 
     public LongButtonPressRunnable(int keycode, ImageButton button) {
         this.keycode = keycode;
