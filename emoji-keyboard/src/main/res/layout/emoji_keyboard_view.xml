@@ -26,31 +26,45 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="30dp"
         android:orientation="horizontal">
 
-        <Button
+        <ImageButton
             android:id="@+id/switchToKeyboard"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:background="@drawable/btn_background"
-            android:scaleType="fitCenter"
             android:layout_weight="0.1429"
-            android:text="@string/keyboardSymbol" />
+            android:src="@drawable/key_icon_keyboard" />
 
         <View
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.7142"/>
+            android:layout_weight="0.4286"/>
 
-        <Button
+        <ImageButton
+            android:id="@+id/spaceBar"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/btn_background"
+            android:layout_weight="0.1429"
+            android:src="@drawable/key_icon_space_bar" />
+
+        <ImageButton
+            android:id="@+id/enterKey"
+            android:src="@drawable/key_icon_enter_key"
+            android:background="@drawable/btn_background"
+            android:layout_width="0dp"
+            android:layout_weight="0.1429"
+            android:layout_height="match_parent" />
+
+        <ImageButton
             android:id="@+id/deleteButton"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:background="@drawable/btn_background"
-            android:scaleType="center"
             android:layout_weight="0.1429"
-            android:text="@string/eraseToTheLeft" />
+            android:src="@drawable/key_icon_backspace" />
 
     </LinearLayout>
 

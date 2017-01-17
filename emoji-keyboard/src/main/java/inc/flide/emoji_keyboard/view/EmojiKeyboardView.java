@@ -12,8 +12,8 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import com.astuetz.PagerSlidingTabStrip;
@@ -22,14 +22,14 @@ import inc.flide.emojiKeyboard.R;
 import inc.flide.emoji_keyboard.InputMethodServiceProxy;
 import inc.flide.emoji_keyboard.adapter.EmojiPagerAdapter;
 import inc.flide.emoji_keyboard.constants.Constants;
+import inc.flide.emoji_keyboard.onclicklisteners.LongButtonPressRunnable;
 
 public class EmojiKeyboardView extends View implements SharedPreferences.OnSharedPreferenceChangeListener{
 
     private ViewPager viewPager;
     private LinearLayout layout;
 
-    private Button deleteButton;
-
+    private static final Handler longButtonPressHandler = new Handler();
     private InputMethodServiceProxy emojiKeyboardService;
 
     public EmojiKeyboardView(Context context) {
@@ -65,8 +65,7 @@ public class EmojiKeyboardView extends View implements SharedPreferences.OnShare
 
         viewPager.setAdapter(emojiPagerAdapter);
 
-        setupDeleteButton();
-        setupKeyboardButton();
+        setupKeyboardButtons();
 
         pagerSlidingTabStrip.setViewPager(viewPager);
 
@@ -75,13 +74,65 @@ public class EmojiKeyboardView extends View implements SharedPreferences.OnShare
         PreferenceManager.getDefaultSharedPreferences(context).registerOnSharedPreferenceChangeListener(this);
     }
 
+    private void setupKeyboardButtons() {
+
+        LongButtonPressRunnable.setInputMethodService(emojiKeyboardService);
+        LongButtonPressRunnable.setLongButtonPressHandler(longButtonPressHandler);
+
+        setupDeleteButton();
+        setupEnterButton();
+        setupSpacebarButton();
+        setupKeyboardButton();
+    }
+
+    private void setupEnterButton() {
+
+        final ImageButton enterButon = (ImageButton) layout.findViewById(R.id.enterKey);
+
+        enterButon.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                emojiKeyboardService.sendDownAndUpKeyEvent(KeyEvent.KEYCODE_ENTER, 0);
+            }
+        });
+
+        final Runnable longEnterButtonPressRunnable = new LongButtonPressRunnable(KeyEvent.KEYCODE_ENTER, enterButon);
+        enterButon.setOnLongClickListener(new OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                longButtonPressHandler.postDelayed(longEnterButtonPressRunnable, Constants.DELAY_MILLIS_LONG_PRESS_CONTINUATION);
+                return true;
+            }
+        });
+    }
+
     public View getView() {
         return layout;
     }
 
+    private void setupSpacebarButton() {
+
+        final ImageButton spacebarButton = (ImageButton) layout.findViewById(R.id.spaceBar);
+
+        spacebarButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                emojiKeyboardService.sendDownAndUpKeyEvent(KeyEvent.KEYCODE_SPACE, 0);
+            }
+        });
+
+        final Runnable longSpacebarButtonPressRunnable = new LongButtonPressRunnable(KeyEvent.KEYCODE_SPACE, spacebarButton);
+        spacebarButton.setOnLongClickListener(new OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                longButtonPressHandler.postDelayed(longSpacebarButtonPressRunnable, Constants.DELAY_MILLIS_LONG_PRESS_CONTINUATION);
+                return true;
+            }
+        });
+    }
     private void setupDeleteButton() {
 
-        deleteButton = (Button) layout.findViewById(R.id.deleteButton);
+        final ImageButton deleteButton = (ImageButton) layout.findViewById(R.id.deleteButton);
 
         deleteButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -90,29 +141,20 @@ public class EmojiKeyboardView extends View implements SharedPreferences.OnShare
             }
         });
 
+        final LongButtonPressRunnable longDeleteButtonPressRunnable = new LongButtonPressRunnable(KeyEvent.KEYCODE_DEL, deleteButton);
         deleteButton.setOnLongClickListener(new OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                longDeleteButtonPressHandler.postDelayed(longDeleteButtonPressRunnable, Constants.DELAY_MILLIS_LONG_PRESS_CONTINUATION);
+                longButtonPressHandler.postDelayed(longDeleteButtonPressRunnable, Constants.DELAY_MILLIS_LONG_PRESS_CONTINUATION);
                 return true;
             }
         });
     }
 
-    private final Handler longDeleteButtonPressHandler = new Handler();
-    private final Runnable longDeleteButtonPressRunnable = new Runnable() {
-        @Override
-        public void run() {
-            emojiKeyboardService.sendDownAndUpKeyEvent(KeyEvent.KEYCODE_DEL, 0);
-            if(deleteButton.isPressed()) {
-                longDeleteButtonPressHandler.postDelayed(this, Constants.DELAY_MILLIS_LONG_PRESS_CONTINUATION);
-            }
-        }
-    };
 
     private void setupKeyboardButton() {
 
-        Button keyboardButton = (Button) layout.findViewById(R.id.switchToKeyboard);
+        ImageButton keyboardButton = (ImageButton) layout.findViewById(R.id.switchToKeyboard);
 
         keyboardButton.setOnClickListener(new OnClickListener() {
             @Override
