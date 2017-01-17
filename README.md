@@ -5,7 +5,7 @@ Basic keyboard application that allows you to insert emojis. It has a settings a
 
 ### Download
 
-The current version of that app is a single keyboard, and can be downloaded from the attached [APK](emoji-keyboard.apk), if you would rather not just clone the repo and build it.
+The current version of that app is a single keyboard, and can be downloaded from the attached [APK](emoji-keyboard-release.apk) or you can download the app from the [google play store](https://play.google.com/store/apps/details?id=inc.flide.emojiKeyboard), if you would rather not just clone the repo and build it.
 
 #Thanks To
 - [klinker24](https://github.com/klinker24) for his efforts in the project [Android-SlidingEmojiKeyboard](https://github.com/klinker24/Android-SlidingEmojiKeyboard) fork of which this project originally is.
