@@ -6,7 +6,6 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -171,7 +170,6 @@ public class EmojiKeyboardView extends View implements SharedPreferences.OnShare
         int width = MeasureSpec.getSize(widthMeasureSpec);
         height = MeasureSpec.getSize(heightMeasureSpec);
 
-        Log.d("emojiKeyboardView", width +" : " + height);
         setMeasuredDimension(width, height);
     }
 

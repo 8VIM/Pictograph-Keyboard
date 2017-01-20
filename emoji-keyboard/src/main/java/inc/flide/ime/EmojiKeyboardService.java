@@ -4,7 +4,6 @@ import android.content.Context;
 import android.inputmethodservice.InputMethodService;
 import android.os.IBinder;
 import android.os.SystemClock;
-import android.os.Vibrator;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
