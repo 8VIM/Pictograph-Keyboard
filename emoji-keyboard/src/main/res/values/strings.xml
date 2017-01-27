@@ -2,8 +2,10 @@
 <resources>
 
     <string name="app_name">Emoji Keyboard</string>
-
     <string name="settings">Settings</string>
+
+    <string name="enable_ime_request_text">In order to utilize the keyboard, you need to enable the keyboard first. Once you click on the enable button, you will be taken to the input method settings screen. Please enable the "Emoji Keyboard" there.</string>
+    <string name="enable_button_text">Enable</string>
 
     <string name="emoji_icon_set">Emoji Icon Set</string>
     <string name="setting_change_icon_set_key">icon_set</string>
@@ -15,4 +17,6 @@
     <string name="setting_change_icon_set_value_emojione">emojione_emoji_</string>
     <string name="setting_change_icon_set_value_emojione_bw">emojione_emoji_bw_</string>
     <string name="setting_change_icon_set_value_google_noto">google_noto_emoji_</string>
+    <string name="title_activity_emoji_keyboard_settings">EmojiKeyboardSettingsActivity</string>
+    <string name="action_settings">Settings</string>
 </resources>
