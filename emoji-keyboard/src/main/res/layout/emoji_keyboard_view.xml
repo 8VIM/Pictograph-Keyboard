@@ -38,10 +38,18 @@
             android:layout_weight="0.1429"
             android:src="@drawable/key_icon_keyboard" />
 
+        <ImageButton
+            android:id="@+id/openSettings"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/btn_background"
+            android:layout_weight="0.1429"
+            android:src="@drawable/key_icon_settings" />
+
         <View
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.4286"/>
+            android:layout_weight="0.2857"/>
 
         <ImageButton
             android:id="@+id/spaceBar"

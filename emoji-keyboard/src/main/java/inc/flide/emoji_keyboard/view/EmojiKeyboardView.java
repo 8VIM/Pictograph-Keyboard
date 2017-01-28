@@ -1,6 +1,7 @@
 package inc.flide.emoji_keyboard.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -82,6 +83,20 @@ public class EmojiKeyboardView extends View implements SharedPreferences.OnShare
         setupEnterButton();
         setupSpacebarButton();
         setupKeyboardButton();
+        setupGoToSettingsButton();
+    }
+
+    private void setupGoToSettingsButton() {
+        final ImageButton openSettingsButton = (ImageButton) layout.findViewById(R.id.openSettings);
+
+        openSettingsButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent emojiKeyboardSettingsIntent = new Intent(getContext(),inc.flide.settings.SharedPreferencesSetting.class);
+                emojiKeyboardSettingsIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                getContext().startActivity(emojiKeyboardSettingsIntent);
+            }
+        });
     }
 
     private void setupEnterButton() {
