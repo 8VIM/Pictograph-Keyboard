@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Emoji Keyboard</string>
+    <string name="app_name">Pictograph Keyboard</string>
     <string name="settings">Settings</string>
 
     <string name="enable_ime_dialog_content">In order to utilize the keyboard, you need to enable the keyboard first. Once you click on the enable button, you will be taken to the input method settings screen. Please enable the "Emoji Keyboard" there.</string>
