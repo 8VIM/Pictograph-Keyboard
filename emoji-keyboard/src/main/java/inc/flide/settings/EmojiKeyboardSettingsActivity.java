@@ -1,15 +1,16 @@
 package inc.flide.settings;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 import android.provider.Settings;
-import android.view.View;
+import android.support.annotation.NonNull;
 import android.view.inputmethod.InputMethodInfo;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
+
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 
 import java.util.List;
 
@@ -51,26 +52,29 @@ public class EmojiKeyboardSettingsActivity extends Activity {
     protected void onResume() {
         super.onResume();
         if(!isEmojiKeyboardEnabled) {
-            //show a dialog box detailing what needs to be done with a button that takes you to lala land.
             pleaseEnableInputMethodDialog();
         }
     }
 
     private void pleaseEnableInputMethodDialog() {
-        final Dialog dialog = new Dialog(this);
-        dialog.setContentView(R.layout.please_enable_ime_dialog_layout);
-        dialog.setCancelable(false);
-        dialog.setTitle("Please Enable IME");
+        final MaterialDialog enableInputMethodNotificationDialog = new MaterialDialog.Builder(this)
+                .title(R.string.enable_ime_dialog_title)
+                .content(R.string.enable_ime_dialog_content)
+                .neutralText(R.string.enable_ime_dialog_neutral_button_text)
+                .cancelable(false)
+                .canceledOnTouchOutside(false)
+                .build();
 
-        Button enableImeButton = (Button) dialog.findViewById(R.id.enableImeButton);
-        enableImeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivityForResult(new Intent(Settings.ACTION_INPUT_METHOD_SETTINGS), 0);
-                dialog.dismiss();
-            }
-        });
-        dialog.show();
+        enableInputMethodNotificationDialog.getBuilder()
+                .onNeutral(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        startActivityForResult(new Intent(Settings.ACTION_INPUT_METHOD_SETTINGS), 0);
+                        enableInputMethodNotificationDialog.dismiss();
+                    }
+                });
+
+        enableInputMethodNotificationDialog.show();
     }
 
     @Override
