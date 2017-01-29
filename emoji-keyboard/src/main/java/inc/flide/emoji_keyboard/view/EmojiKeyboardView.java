@@ -61,7 +61,7 @@ public class EmojiKeyboardView extends View implements SharedPreferences.OnShare
 
         pagerSlidingTabStrip.setIndicatorColor(getResources().getColor(R.color.pager_color));
 
-        EmojiPagerAdapter emojiPagerAdapter = new EmojiPagerAdapter(context, viewPager, height);
+        EmojiPagerAdapter emojiPagerAdapter = new EmojiPagerAdapter(context, viewPager, 0);
 
         viewPager.setAdapter(emojiPagerAdapter);
 
@@ -72,6 +72,10 @@ public class EmojiKeyboardView extends View implements SharedPreferences.OnShare
         viewPager.setCurrentItem(0);
 
         PreferenceManager.getDefaultSharedPreferences(context).registerOnSharedPreferenceChangeListener(this);
+    }
+
+    public View getView() {
+        return layout;
     }
 
     private void setupKeyboardButtons() {
@@ -118,10 +122,6 @@ public class EmojiKeyboardView extends View implements SharedPreferences.OnShare
                 return true;
             }
         });
-    }
-
-    public View getView() {
-        return layout;
     }
 
     private void setupSpacebarButton() {
@@ -177,21 +177,10 @@ public class EmojiKeyboardView extends View implements SharedPreferences.OnShare
             }
         });
     }
-
-    private int height;
-    @Override
-    public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-
-        int width = MeasureSpec.getSize(widthMeasureSpec);
-        height = MeasureSpec.getSize(heightMeasureSpec);
-
-        setMeasuredDimension(width, height);
-    }
-
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (key.equals("icon_set")){
-            EmojiPagerAdapter emojiPagerAdapter = new EmojiPagerAdapter(getContext(), viewPager, height);
+            EmojiPagerAdapter emojiPagerAdapter = new EmojiPagerAdapter(getContext(), viewPager, 0);
             viewPager.setAdapter(emojiPagerAdapter);
             viewPager.invalidate();
         }
