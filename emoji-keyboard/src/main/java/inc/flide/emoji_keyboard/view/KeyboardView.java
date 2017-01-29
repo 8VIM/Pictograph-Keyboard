@@ -19,6 +19,7 @@ import com.astuetz.PagerSlidingTabStrip;
 import inc.flide.emojiKeyboard.R;
 import inc.flide.emoji_keyboard.InputMethodServiceProxy;
 import inc.flide.emoji_keyboard.adapter.EmojiPagerAdapter;
+import inc.flide.emoji_keyboard.adapter.LennyFacePagerAdapter;
 import inc.flide.emoji_keyboard.constants.Constants;
 import inc.flide.emoji_keyboard.onclicklisteners.LongButtonPressRunnable;
 
@@ -62,6 +63,14 @@ public class KeyboardView extends View implements SharedPreferences.OnSharedPref
         emojiPagerSlidingTabStrip.setViewPager(emojiViewPager);
         emojiViewPager.setCurrentItem(0);
 
+        ViewPager lennyFaceViewPager = (ViewPager) keyboardLayout.findViewById(R.id.lennyFaceKeyboardViewPager);
+        PagerSlidingTabStrip lennyFacePagerSlidingTabStrip = (PagerSlidingTabStrip) keyboardLayout.findViewById(R.id.lennyFaceKeyboardPagerSlidingTabStrip);
+        lennyFacePagerSlidingTabStrip.setIndicatorColor(getResources().getColor(R.color.pager_color));
+        LennyFacePagerAdapter lennyFacePagerAdapter = new LennyFacePagerAdapter(context, lennyFaceViewPager, 0);
+        lennyFaceViewPager.setAdapter(lennyFacePagerAdapter);
+        lennyFacePagerSlidingTabStrip.setViewPager(lennyFaceViewPager);
+        lennyFaceViewPager.setCurrentItem(0);
+
         setupKeyboardButtons();
         PreferenceManager.getDefaultSharedPreferences(context).registerOnSharedPreferenceChangeListener(this);
     }
@@ -80,6 +89,36 @@ public class KeyboardView extends View implements SharedPreferences.OnSharedPref
         setupSpacebarButton();
         setupKeyboardButton();
         setupGoToSettingsButton();
+        setupToogleLennyFacesAndEmojiKeyboard();
+    }
+
+    private void setupToogleLennyFacesAndEmojiKeyboard() {
+        final Button toogleLennyFacesAndEmojiKeyboardButton = (Button) keyboardLayout.findViewById(R.id.toggleLennyFacesAndEmojiKeyboardButton);
+
+        if(isEmojiKeyboardVisible) {
+            toogleLennyFacesAndEmojiKeyboardButton.setText(R.string.lennyFace);
+        } else {
+            toogleLennyFacesAndEmojiKeyboardButton.setText(R.string.emoji);
+        }
+
+        toogleLennyFacesAndEmojiKeyboardButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(isEmojiKeyboardVisible) {
+                    keyboardLayout.findViewById(R.id.emojiKeyboard).setVisibility(GONE);
+                    keyboardLayout.findViewById(R.id.lennyFaceKeyboard).setVisibility(VISIBLE);
+                    isEmojiKeyboardVisible=false;
+                    isLennyFacesKeyboardVisible = true;
+                    toogleLennyFacesAndEmojiKeyboardButton.setText(R.string.emoji);
+                } else {
+                    keyboardLayout.findViewById(R.id.emojiKeyboard).setVisibility(VISIBLE);
+                    keyboardLayout.findViewById(R.id.lennyFaceKeyboard).setVisibility(GONE);
+                    isEmojiKeyboardVisible=true;
+                    isLennyFacesKeyboardVisible = false;
+                    toogleLennyFacesAndEmojiKeyboardButton.setText(R.string.lennyFace);
+                }
+            }
+        });
     }
 
 

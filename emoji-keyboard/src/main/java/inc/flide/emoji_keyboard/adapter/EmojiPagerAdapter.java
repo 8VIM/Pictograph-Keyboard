@@ -65,8 +65,6 @@ public class EmojiPagerAdapter extends PagerAdapter implements PagerSlidingTabSt
                 new StaticEmojiGridAdapter(context, categorizedEmojiList.getSymbols())).getView());
         pages.add(new EmojiKeyboardSinglePageView(context,
                 new StaticEmojiGridAdapter(context, categorizedEmojiList.getFlags())).getView());
-
-
     }
 
     @Override
