@@ -93,12 +93,12 @@ public class KeyboardView extends View implements SharedPreferences.OnSharedPref
     }
 
     private void setupToogleLennyFacesAndEmojiKeyboard() {
-        final Button toogleLennyFacesAndEmojiKeyboardButton = (Button) keyboardLayout.findViewById(R.id.toggleLennyFacesAndEmojiKeyboardButton);
+        final ImageButton toogleLennyFacesAndEmojiKeyboardButton = (ImageButton) keyboardLayout.findViewById(R.id.toggleLennyFacesAndEmojiKeyboardButton);
 
         if(isEmojiKeyboardVisible) {
-            toogleLennyFacesAndEmojiKeyboardButton.setText(R.string.lennyFace);
+            toogleLennyFacesAndEmojiKeyboardButton.setImageResource(R.drawable.key_icon_switch_to_lenny_faces);
         } else {
-            toogleLennyFacesAndEmojiKeyboardButton.setText(R.string.emoji);
+            toogleLennyFacesAndEmojiKeyboardButton.setImageResource(R.drawable.key_icon_switch_to_emoji);
         }
 
         toogleLennyFacesAndEmojiKeyboardButton.setOnClickListener(new OnClickListener() {
@@ -109,13 +109,13 @@ public class KeyboardView extends View implements SharedPreferences.OnSharedPref
                     keyboardLayout.findViewById(R.id.lennyFaceKeyboard).setVisibility(VISIBLE);
                     isEmojiKeyboardVisible=false;
                     isLennyFacesKeyboardVisible = true;
-                    toogleLennyFacesAndEmojiKeyboardButton.setText(R.string.emoji);
+                    toogleLennyFacesAndEmojiKeyboardButton.setImageResource(R.drawable.key_icon_switch_to_emoji);
                 } else {
                     keyboardLayout.findViewById(R.id.emojiKeyboard).setVisibility(VISIBLE);
                     keyboardLayout.findViewById(R.id.lennyFaceKeyboard).setVisibility(GONE);
                     isEmojiKeyboardVisible=true;
                     isLennyFacesKeyboardVisible = false;
-                    toogleLennyFacesAndEmojiKeyboardButton.setText(R.string.lennyFace);
+                    toogleLennyFacesAndEmojiKeyboardButton.setImageResource(R.drawable.key_icon_switch_to_lenny_faces);
                 }
             }
         });
