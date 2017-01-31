@@ -19,7 +19,6 @@ import com.astuetz.PagerSlidingTabStrip;
 import inc.flide.emojiKeyboard.R;
 import inc.flide.emoji_keyboard.InputMethodServiceProxy;
 import inc.flide.emoji_keyboard.adapter.EmojiPagerAdapter;
-import inc.flide.emoji_keyboard.adapter.LennyFacePagerAdapter;
 import inc.flide.emoji_keyboard.constants.Constants;
 import inc.flide.emoji_keyboard.onclicklisteners.LongButtonPressRunnable;
 

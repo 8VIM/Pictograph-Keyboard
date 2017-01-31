@@ -5,9 +5,9 @@ import android.content.Context;
 import inc.flide.emoji_keyboard.InputMethodServiceProxy;
 import inc.flide.emoji_keyboard.sqlite.EmojiDataSource;
 
-public class RecentEmojiAdapter extends BaseEmojiAdapter {
+public class RecentEmojiGridAdapter extends BaseEmojiGridAdapter {
 
-    public RecentEmojiAdapter(Context context) {
+    public RecentEmojiGridAdapter(Context context) {
         super((InputMethodServiceProxy) context);
         dataSource = EmojiDataSource.getInstance(context);
     }

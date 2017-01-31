@@ -7,9 +7,9 @@ import java.util.List;
 import inc.flide.emoji_keyboard.InputMethodServiceProxy;
 import inc.flide.emoji_keyboard.utilities.Emoji;
 
-public class StaticEmojiAdapter extends BaseEmojiAdapter {
+public class StaticEmojiGridAdapter extends BaseEmojiGridAdapter {
 
-    public StaticEmojiAdapter(Context context, List<Emoji> emojiList) {
+    public StaticEmojiGridAdapter(Context context, List<Emoji> emojiList) {
         super((InputMethodServiceProxy) context);
         this.emojiList = emojiList;
     }

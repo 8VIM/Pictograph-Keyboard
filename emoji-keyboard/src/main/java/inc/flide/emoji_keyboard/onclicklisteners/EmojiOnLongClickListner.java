@@ -13,7 +13,7 @@ import java.util.List;
 
 import inc.flide.emojiKeyboard.R;
 import inc.flide.emoji_keyboard.InputMethodServiceProxy;
-import inc.flide.emoji_keyboard.adapter.BaseEmojiAdapter;
+import inc.flide.emoji_keyboard.adapter.BaseEmojiGridAdapter;
 import inc.flide.emoji_keyboard.utilities.CategorizedEmojiList;
 import inc.flide.emoji_keyboard.utilities.Emoji;
 
@@ -60,7 +60,7 @@ public class EmojiOnLongClickListner implements View.OnLongClickListener {
         List<ImageView> diversityEmojiImageViewList = new ArrayList<>();
 
         for (final Emoji emoji: diversityEmojiList) {
-            ImageView imageView = BaseEmojiAdapter.setupImageView(null, emoji);
+            ImageView imageView = BaseEmojiGridAdapter.setupImageView(null, emoji);
 
             imageView.setOnClickListener(new PopupWindowEmojiOnClickListner(emoji, inputMethodService, popupWindow));
             diversityEmojiImageViewList.add(imageView);

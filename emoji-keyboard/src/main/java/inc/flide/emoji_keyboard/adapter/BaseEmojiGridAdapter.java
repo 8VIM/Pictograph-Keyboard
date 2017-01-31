@@ -16,15 +16,15 @@ import inc.flide.emoji_keyboard.utilities.Emoji;
 import inc.flide.emoji_keyboard.onclicklisteners.EmojiOnClickListner;
 import inc.flide.emoji_keyboard.onclicklisteners.EmojiOnLongClickListner;
 
-public abstract class BaseEmojiAdapter extends BaseAdapter {
+public abstract class BaseEmojiGridAdapter extends BaseAdapter {
 
     private static InputMethodServiceProxy emojiKeyboardService;
     private static String filePrefix;
 
     protected List<Emoji> emojiList;
 
-    public BaseEmojiAdapter(InputMethodServiceProxy emojiKeyboardService ) {
-        BaseEmojiAdapter.emojiKeyboardService = emojiKeyboardService;
+    public BaseEmojiGridAdapter(InputMethodServiceProxy emojiKeyboardService ) {
+        BaseEmojiGridAdapter.emojiKeyboardService = emojiKeyboardService;
     }
 
     @Override
