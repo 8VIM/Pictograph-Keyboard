@@ -20,7 +20,7 @@ public class EmojiKeyboardSinglePageView {
 
         final GridView emojiGrid = new GridView(context);
 
-        emojiGrid.setColumnWidth((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, context.getResources().getDisplayMetrics()));
+        emojiGrid.setColumnWidth((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 43.75f, context.getResources().getDisplayMetrics()));
         emojiGrid.setNumColumns(GridView.AUTO_FIT);
 
         emojiGrid.setAdapter(adapter);

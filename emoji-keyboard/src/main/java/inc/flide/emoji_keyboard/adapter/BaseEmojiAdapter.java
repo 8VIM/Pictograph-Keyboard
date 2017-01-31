@@ -61,7 +61,7 @@ public abstract class BaseEmojiAdapter extends BaseAdapter {
         final ImageView imageView;
         if (convertView == null) {
             imageView = new ImageView(emojiKeyboardService.getContext());
-            int scale = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, emojiKeyboardService.getContext().getResources().getDisplayMetrics());
+            int scale = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 7, emojiKeyboardService.getContext().getResources().getDisplayMetrics());
             imageView.setPadding(scale, scale, scale, scale);
             imageView.setAdjustViewBounds(true);
         } else {
