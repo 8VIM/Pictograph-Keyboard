@@ -12,6 +12,7 @@ import java.util.List;
 
 import inc.flide.emojiKeyboard.R;
 import inc.flide.emoji_keyboard.InputMethodServiceProxy;
+import inc.flide.emoji_keyboard.constants.EmojiCategory;
 import inc.flide.emoji_keyboard.utilities.Emoji;
 import inc.flide.emoji_keyboard.onclicklisteners.EmojiOnClickListner;
 import inc.flide.emoji_keyboard.onclicklisteners.EmojiOnLongClickListner;
@@ -21,9 +22,9 @@ public abstract class BaseEmojiGridAdapter extends BaseAdapter {
     private static InputMethodServiceProxy emojiKeyboardService;
     private static String filePrefix;
 
-    protected List<Emoji> emojiList;
+    private List<Emoji> emojiList;
 
-    public BaseEmojiGridAdapter(InputMethodServiceProxy emojiKeyboardService ) {
+    public BaseEmojiGridAdapter(InputMethodServiceProxy emojiKeyboardService) {
         BaseEmojiGridAdapter.emojiKeyboardService = emojiKeyboardService;
     }
 
@@ -91,7 +92,11 @@ public abstract class BaseEmojiGridAdapter extends BaseAdapter {
         int resourceId;
         resourceId = emojiKeyboardService.getDrawableResourceId(resourceString);
         if (resourceId == 0) {
-            resourceId = emojiKeyboardService.getDrawableResourceId("ic_not_available_sign");
+            if(emoji.getCategory() == EmojiCategory.flags) {
+                resourceId = emojiKeyboardService.getDrawableResourceId("ic_flag_not_available_sign");
+            } else {
+                resourceId = emojiKeyboardService.getDrawableResourceId("ic_not_available_sign");
+            }
         }
 
         return resourceId;
@@ -109,4 +114,13 @@ public abstract class BaseEmojiGridAdapter extends BaseAdapter {
            return emojiList.get(position).isDiversityAvailable();
        }
     }
+
+    protected List<Emoji> getEmojiList() {
+        return emojiList;
+    }
+
+    protected void setEmojiList(List<Emoji> emojiList) {
+        this.emojiList = emojiList;
+    }
+
 }

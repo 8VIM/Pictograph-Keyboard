@@ -3,6 +3,7 @@ package inc.flide.emoji_keyboard.adapter;
 import android.content.Context;
 
 import inc.flide.emoji_keyboard.InputMethodServiceProxy;
+import inc.flide.emoji_keyboard.constants.EmojiCategory;
 import inc.flide.emoji_keyboard.sqlite.EmojiDataSource;
 
 public class RecentEmojiGridAdapter extends BaseEmojiGridAdapter {
@@ -16,8 +17,8 @@ public class RecentEmojiGridAdapter extends BaseEmojiGridAdapter {
 
     @Override
     public int getCount() {
-        emojiList = dataSource.getAllEntriesInDescendingOrderOfCount();
-        return emojiList.size();
+        setEmojiList(dataSource.getAllEntriesInDescendingOrderOfCount());
+        return getEmojiList().size();
     }
 
     @Override
