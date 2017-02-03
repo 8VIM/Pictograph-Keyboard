@@ -9,7 +9,7 @@ import inc.flide.emoji_keyboard.constants.EmojiCategory;
 
 public class CategorizedEmojiList {
 
-    private static CategorizedEmojiList instance = null;
+    private static final CategorizedEmojiList instance = new CategorizedEmojiList();
 
     private final List<Emoji> people = new ArrayList<>();
     private final List<Emoji> nature = new ArrayList<>();
@@ -23,10 +23,6 @@ public class CategorizedEmojiList {
     private final List<Emoji> regional = new ArrayList<>();
 
     public static CategorizedEmojiList getInstance() {
-        if (instance == null) {
-            instance = new CategorizedEmojiList();
-        }
-
         return instance;
     }
     private CategorizedEmojiList() {}
