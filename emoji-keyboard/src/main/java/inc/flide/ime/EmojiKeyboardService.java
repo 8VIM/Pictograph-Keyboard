@@ -16,7 +16,7 @@ import com.orhanobut.logger.Logger;
 
 import inc.flide.emojiKeyboard.R;
 import inc.flide.emoji_keyboard.InputMethodServiceProxy;
-import inc.flide.emoji_keyboard.view.EmojiKeyboardView;
+import inc.flide.emoji_keyboard.view.KeyboardView;
 
 public class EmojiKeyboardService extends InputMethodService implements InputMethodServiceProxy {
 
@@ -37,10 +37,10 @@ public class EmojiKeyboardService extends InputMethodService implements InputMet
         previousInputMethodManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
         iBinder = this.getWindow().getWindow().getAttributes().token;
 
-        EmojiKeyboardView emojiKeyboardView = (EmojiKeyboardView) getLayoutInflater()
+        KeyboardView keyboardView = (KeyboardView) getLayoutInflater()
                 .inflate(R.layout.emoji_keyboard_layout, null);
 
-        return emojiKeyboardView.getView();
+        return keyboardView.getView();
     }
 
     @Override

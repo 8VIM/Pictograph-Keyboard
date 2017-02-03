@@ -14,9 +14,9 @@ import java.util.ArrayList;
 
 import inc.flide.emojiKeyboard.R;
 import inc.flide.emoji_keyboard.utilities.CategorizedEmojiList;
+import inc.flide.emoji_keyboard.view.EmojiKeyboardSinglePageView;
 import inc.flide.settings.SharedPreferencesSetting;
 import inc.flide.emoji_keyboard.utilities.Utility;
-import inc.flide.emoji_keyboard.view.EmojiKeyboardView;
 
 public class EmojiPagerAdapter extends PagerAdapter implements PagerSlidingTabStrip.IconTabProvider {
 
@@ -46,15 +46,15 @@ public class EmojiPagerAdapter extends PagerAdapter implements PagerSlidingTabSt
         this.pages = new ArrayList<>();
 
         BaseEmojiAdapter.setFilePrefix(getPreferedIconSet());
-        pages.add(new EmojiKeyboardView.KeyboardSinglePageView(context, new RecentEmojiAdapter(context)).getView());
-        pages.add(new EmojiKeyboardView.KeyboardSinglePageView(context, new StaticEmojiAdapter(context, categorizedEmojiList.getPeople())).getView());
-        pages.add(new EmojiKeyboardView.KeyboardSinglePageView(context, new StaticEmojiAdapter(context, categorizedEmojiList.getNature())).getView());
-        pages.add(new EmojiKeyboardView.KeyboardSinglePageView(context, new StaticEmojiAdapter(context, categorizedEmojiList.getFood())).getView());
-        pages.add(new EmojiKeyboardView.KeyboardSinglePageView(context, new StaticEmojiAdapter(context, categorizedEmojiList.getActivity())).getView());
-        pages.add(new EmojiKeyboardView.KeyboardSinglePageView(context, new StaticEmojiAdapter(context, categorizedEmojiList.getTravel())).getView());
-        pages.add(new EmojiKeyboardView.KeyboardSinglePageView(context, new StaticEmojiAdapter(context, categorizedEmojiList.getObjects())).getView());
-        pages.add(new EmojiKeyboardView.KeyboardSinglePageView(context, new StaticEmojiAdapter(context, categorizedEmojiList.getSymbols())).getView());
-        pages.add(new EmojiKeyboardView.KeyboardSinglePageView(context, new StaticEmojiAdapter(context, categorizedEmojiList.getFlags())).getView());
+        pages.add(new EmojiKeyboardSinglePageView(context, new RecentEmojiAdapter(context)).getView());
+        pages.add(new EmojiKeyboardSinglePageView(context, new StaticEmojiAdapter(context, categorizedEmojiList.getPeople())).getView());
+        pages.add(new EmojiKeyboardSinglePageView(context, new StaticEmojiAdapter(context, categorizedEmojiList.getNature())).getView());
+        pages.add(new EmojiKeyboardSinglePageView(context, new StaticEmojiAdapter(context, categorizedEmojiList.getFood())).getView());
+        pages.add(new EmojiKeyboardSinglePageView(context, new StaticEmojiAdapter(context, categorizedEmojiList.getActivity())).getView());
+        pages.add(new EmojiKeyboardSinglePageView(context, new StaticEmojiAdapter(context, categorizedEmojiList.getTravel())).getView());
+        pages.add(new EmojiKeyboardSinglePageView(context, new StaticEmojiAdapter(context, categorizedEmojiList.getObjects())).getView());
+        pages.add(new EmojiKeyboardSinglePageView(context, new StaticEmojiAdapter(context, categorizedEmojiList.getSymbols())).getView());
+        pages.add(new EmojiKeyboardSinglePageView(context, new StaticEmojiAdapter(context, categorizedEmojiList.getFlags())).getView());
 
 
     }

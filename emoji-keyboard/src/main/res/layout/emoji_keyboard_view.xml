@@ -8,22 +8,23 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:orientation="horizontal">
-
-        <com.astuetz.PagerSlidingTabStrip
-            android:id="@+id/emojiCategorytab"
-            app:pstsTabPaddingLeftRight="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-    </LinearLayout>
-
-    <android.support.v4.view.ViewPager
         android:id="@+id/emojiKeyboard"
         android:layout_width="match_parent"
-        android:layout_height="200dp"/>
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.astuetz.PagerSlidingTabStrip
+            android:id="@+id/emojiKeyboardPagerSlidingTabStrip"
+            app:pstsTabPaddingLeftRight="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/emojiKeyboardViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"/>
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,7 +32,7 @@
         android:orientation="horizontal">
 
         <ImageButton
-            android:id="@+id/switchToKeyboard"
+            android:id="@+id/switchToKeyboardButton"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:background="@drawable/btn_background"
@@ -39,7 +40,7 @@
             android:src="@drawable/key_icon_keyboard" />
 
         <ImageButton
-            android:id="@+id/openSettings"
+            android:id="@+id/openSettingsButton"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:background="@drawable/btn_background"
@@ -49,10 +50,10 @@
         <View
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.2857"/>
+            android:layout_weight="0.2858"/>
 
         <ImageButton
-            android:id="@+id/spaceBar"
+            android:id="@+id/spaceBarButton"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:background="@drawable/btn_background"
@@ -60,7 +61,7 @@
             android:src="@drawable/key_icon_space_bar" />
 
         <ImageButton
-            android:id="@+id/enterKey"
+            android:id="@+id/enterButton"
             android:src="@drawable/key_icon_enter_key"
             android:background="@drawable/btn_background"
             android:layout_width="0dp"

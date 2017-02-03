@@ -7,12 +7,10 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
-import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.BaseAdapter;
-import android.widget.GridView;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
@@ -21,28 +19,31 @@ import com.astuetz.PagerSlidingTabStrip;
 import inc.flide.emojiKeyboard.R;
 import inc.flide.emoji_keyboard.InputMethodServiceProxy;
 import inc.flide.emoji_keyboard.adapter.EmojiPagerAdapter;
+import inc.flide.emoji_keyboard.adapter.LennyFacePagerAdapter;
 import inc.flide.emoji_keyboard.constants.Constants;
 import inc.flide.emoji_keyboard.onclicklisteners.LongButtonPressRunnable;
 
-public class EmojiKeyboardView extends View implements SharedPreferences.OnSharedPreferenceChangeListener{
+public class KeyboardView extends View implements SharedPreferences.OnSharedPreferenceChangeListener{
 
-    private ViewPager viewPager;
-    private LinearLayout layout;
+    private LinearLayout keyboardLayout;
+
+    private boolean isEmojiKeyboardVisible = true;
+    private boolean isLennyFacesKeyboardVisible = false;
 
     private static final Handler longButtonPressHandler = new Handler();
     private InputMethodServiceProxy emojiKeyboardService;
 
-    public EmojiKeyboardView(Context context) {
+    public KeyboardView(Context context) {
         super(context);
         initialize(context);
     }
 
-    public EmojiKeyboardView(Context context, AttributeSet attrs) {
+    public KeyboardView(Context context, AttributeSet attrs) {
         super(context, attrs);
         initialize(context);
     }
 
-    public EmojiKeyboardView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public KeyboardView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initialize(context);
     }
@@ -52,30 +53,22 @@ public class EmojiKeyboardView extends View implements SharedPreferences.OnShare
         emojiKeyboardService = (InputMethodServiceProxy) context;
 
         LayoutInflater inflater = (LayoutInflater)   getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        keyboardLayout = (LinearLayout) inflater.inflate(R.layout.emoji_keyboard_view, null);
 
-        layout = (LinearLayout) inflater.inflate(R.layout.emoji_keyboard_view, null);
-
-        viewPager = (ViewPager) layout.findViewById(R.id.emojiKeyboard);
-
-        PagerSlidingTabStrip pagerSlidingTabStrip = (PagerSlidingTabStrip) layout.findViewById(R.id.emojiCategorytab);
-
-        pagerSlidingTabStrip.setIndicatorColor(getResources().getColor(R.color.pager_color));
-
-        EmojiPagerAdapter emojiPagerAdapter = new EmojiPagerAdapter(context, viewPager, 0);
-
-        viewPager.setAdapter(emojiPagerAdapter);
+        ViewPager emojiViewPager = (ViewPager) keyboardLayout.findViewById(R.id.emojiKeyboardViewPager);
+        PagerSlidingTabStrip emojiPagerSlidingTabStrip = (PagerSlidingTabStrip) keyboardLayout.findViewById(R.id.emojiKeyboardPagerSlidingTabStrip);
+        emojiPagerSlidingTabStrip.setIndicatorColor(getResources().getColor(R.color.pager_color));
+        EmojiPagerAdapter emojiPagerAdapter = new EmojiPagerAdapter(context, emojiViewPager, 0);
+        emojiViewPager.setAdapter(emojiPagerAdapter);
+        emojiPagerSlidingTabStrip.setViewPager(emojiViewPager);
+        emojiViewPager.setCurrentItem(0);
 
         setupKeyboardButtons();
-
-        pagerSlidingTabStrip.setViewPager(viewPager);
-
-        viewPager.setCurrentItem(0);
-
         PreferenceManager.getDefaultSharedPreferences(context).registerOnSharedPreferenceChangeListener(this);
     }
 
     public View getView() {
-        return layout;
+        return keyboardLayout;
     }
 
     private void setupKeyboardButtons() {
@@ -90,8 +83,9 @@ public class EmojiKeyboardView extends View implements SharedPreferences.OnShare
         setupGoToSettingsButton();
     }
 
+
     private void setupGoToSettingsButton() {
-        final ImageButton openSettingsButton = (ImageButton) layout.findViewById(R.id.openSettings);
+        final ImageButton openSettingsButton = (ImageButton) keyboardLayout.findViewById(R.id.openSettingsButton);
 
         openSettingsButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -105,7 +99,7 @@ public class EmojiKeyboardView extends View implements SharedPreferences.OnShare
 
     private void setupEnterButton() {
 
-        final ImageButton enterButon = (ImageButton) layout.findViewById(R.id.enterKey);
+        final ImageButton enterButon = (ImageButton) keyboardLayout.findViewById(R.id.enterButton);
 
         enterButon.setOnClickListener(new OnClickListener() {
             @Override
@@ -126,7 +120,7 @@ public class EmojiKeyboardView extends View implements SharedPreferences.OnShare
 
     private void setupSpacebarButton() {
 
-        final ImageButton spacebarButton = (ImageButton) layout.findViewById(R.id.spaceBar);
+        final ImageButton spacebarButton = (ImageButton) keyboardLayout.findViewById(R.id.spaceBarButton);
 
         spacebarButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -146,7 +140,7 @@ public class EmojiKeyboardView extends View implements SharedPreferences.OnShare
     }
     private void setupDeleteButton() {
 
-        final ImageButton deleteButton = (ImageButton) layout.findViewById(R.id.deleteButton);
+        final ImageButton deleteButton = (ImageButton) keyboardLayout.findViewById(R.id.deleteButton);
 
         deleteButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -168,7 +162,7 @@ public class EmojiKeyboardView extends View implements SharedPreferences.OnShare
 
     private void setupKeyboardButton() {
 
-        ImageButton keyboardButton = (ImageButton) layout.findViewById(R.id.switchToKeyboard);
+        ImageButton keyboardButton = (ImageButton) keyboardLayout.findViewById(R.id.switchToKeyboardButton);
 
         keyboardButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -180,31 +174,11 @@ public class EmojiKeyboardView extends View implements SharedPreferences.OnShare
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (key.equals("icon_set")){
-            EmojiPagerAdapter emojiPagerAdapter = new EmojiPagerAdapter(getContext(), viewPager, 0);
-            viewPager.setAdapter(emojiPagerAdapter);
-            viewPager.invalidate();
+            ViewPager emojiViewPager = (ViewPager) keyboardLayout.findViewById(R.id.emojiKeyboardViewPager);
+            EmojiPagerAdapter emojiPagerAdapter = new EmojiPagerAdapter(getContext(), emojiViewPager, 0);
+            emojiViewPager.setAdapter(emojiPagerAdapter);
+            emojiViewPager.invalidate();
         }
     }
 
-    public static class KeyboardSinglePageView {
-
-        private final Context context;
-        private final BaseAdapter adapter;
-
-        public KeyboardSinglePageView(Context context, BaseAdapter adapter) {
-            this.context = context;
-            this.adapter = adapter;
-        }
-
-        public View getView() {
-
-            final GridView emojiGrid = new GridView(context);
-
-            emojiGrid.setColumnWidth((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, context.getResources().getDisplayMetrics()));
-            emojiGrid.setNumColumns(GridView.AUTO_FIT);
-
-            emojiGrid.setAdapter(adapter);
-            return emojiGrid;
-        }
-    }
 }
