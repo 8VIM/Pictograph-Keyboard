@@ -7,5 +7,5 @@
         android:bottomLeftRadius="10dp" />
 
     <solid
-        android:color="@color/pager_color"/>
+        android:color="@color/pallet_1_colour_2"/>
 </shape>

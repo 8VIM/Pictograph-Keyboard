@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="light_silver">#E8E8E8</color>
-    <color name="pager_color">#CECECE</color>
-    <color name="holo_blue">#33B5E5</color>
-    <color name="delete_color">#adadad</color>
-    <color name="divider_color">#1A000000</color>
-    <color name="experimental">#FF0000</color>
-
-    <color name="trial_expired_background">#DD000000</color>
-
-    <color name="black">#222222</color>
+    <color name="pallet_1_colour_1">#E8E8E8</color>
+    <color name="pallet_1_colour_2">#CECECE</color>
+    <color name="pallet_1_colour_3">#7f7f7f</color>
+    <color name="pallet_1_colour_4">#46494c</color>
+    <color name="pallet_1_colour_5">#4c5c68</color>
 
 </resources>
