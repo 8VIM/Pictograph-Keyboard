@@ -27,7 +27,7 @@ public class BaseAsciiArtAdapter extends RecyclerView.Adapter<BaseAsciiArtAdapte
     private static void setupTextView(final TextView textView, String asciiArt) {
         textView.setText(asciiArt);
         textView.setOnClickListener(new LennyFaceOnClickListner(asciiArt, emojiKeyboardService));
-        textView.setBackgroundResource(R.color.pallet_1_colour_3);
+        textView.setBackgroundResource(R.drawable.ascii_art_button_selector);
     }
 
     @Override

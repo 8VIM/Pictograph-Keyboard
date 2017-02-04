@@ -71,7 +71,7 @@ public abstract class BaseEmojiGridAdapter extends BaseAdapter {
         }
 
         imageView.setImageResource(getIconIdBasedOnEmoji(emoji));
-        imageView.setBackgroundResource(R.drawable.btn_background);
+        imageView.setBackgroundResource(R.drawable.emoji_button_selector);
 
         return imageView;
     }

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/customborder"
+    android:background="@drawable/diversity_emoji_popup_shape"
     android:orientation="vertical" >
 
     <LinearLayout
