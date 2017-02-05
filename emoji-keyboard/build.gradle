@@ -23,6 +23,9 @@ android {
         versionName "2.0.5"
     }
 
+    aaptOptions{
+        cruncherEnabled = false
+    }
     buildTypes {
         release {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
