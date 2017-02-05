@@ -108,7 +108,7 @@ public abstract class BaseEmojiGridAdapter extends BaseAdapter {
 
     //TODO : A very bad temporary solution.
     public boolean isDiversitySupported(int position) {
-       if(filePrefix.equals("emojione_emoji_bw_")){
+       if(filePrefix.equals("emojione_bw_emoji_")){
            return false;
        } else {
            return emojiList.get(position).isDiversityAvailable();
