@@ -31,8 +31,8 @@ android {
     defaultConfig {
         minSdkVersion 13
         targetSdkVersion 25
-        versionCode 17
-        versionName "Iteration-17"
+        versionCode 18
+        versionName "Iteration-18"
     }
 
     splits {
