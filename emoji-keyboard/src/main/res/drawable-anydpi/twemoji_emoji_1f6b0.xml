@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:viewportWidth="45"
+    android:viewportHeight="45"
+    android:width="45dp"
+    android:height="45dp">
+    <group
+        android:scaleX="1.25"
+        android:scaleY="-1.25"
+        android:translateY="45">
+        <group>
+            <clip-path
+                android:pathData="M0 36L36 36 36 0 0 0 0 36Z" />
+            <group
+                android:translateY="32">
+                <path
+                    android:pathData="M0 0c0 4 4 4 4 4l28 0c0 0 4 0 4 -4l0 -28c0 0 0 -4 -4 -4l-28 0c0 0 -4 0 -4 4L0 0Z"
+                    android:fillColor="#226699" />
+            </group>
+            <group
+                android:translateX="33"
+                android:translateY="27">
+                <path
+                    android:pathData="M0 0l-11 0 0 4.5 0 1.5c0 0 0 1 -1 1 -1 0 -1 -1 -1 -1l0 -1.5 0 -4.5c-8 0 -8 -7 -8 -7l0 -2c0 -1 1 -1 1 -1l3 0c0 0 1 0 1 1l0 0.25 0 0.062 0 1.688c0 2 2 2 2 2l14 0c1 0 1 1 1 1l0 3c0 0 0 1 -1 1"
+                    android:fillColor="#ffffff" />
+            </group>
+            <group
+                android:translateX="18.5"
+                android:translateY="33">
+                <path
+                    android:pathData="M0 0L-3 0C-3.829 0 -4.5 -0.671 -4.5 -1.5 -4.5 -2.329 -3.829 -3 -3 -3l3 0c0.828 0 1.5 0.671 1.5 1.5C1.5 -0.671 0.828 0 0 0"
+                    android:fillColor="#ffffff" />
+            </group>
+            <group
+                android:translateX="23.5"
+                android:translateY="30">
+                <path
+                    android:pathData="M0 0L3 0C3.828 0 4.5 0.671 4.5 1.5 4.5 2.329 3.828 3 3 3L0 3C-0.828 3 -1.5 2.329 -1.5 1.5 -1.5 0.671 -0.828 0 0 0"
+                    android:fillColor="#ffffff" />
+            </group>
+            <group
+                android:translateX="20"
+                android:translateY="16">
+                <path
+                    android:pathData="M0 0c-1 0 -1 -1 -1 -1l0 -5 -9 0 0 5c0 0 0 1 -1 1 -1 0 -1 -1 -1 -1l0 -11c0 0 0 -2 2 -2l9 0c2 0 2 2 2 2l0 11c0 0 0 1 -1 1"
+                    android:fillColor="#ffffff" />
+            </group>
+        </group>
+    </group>
+</vector>

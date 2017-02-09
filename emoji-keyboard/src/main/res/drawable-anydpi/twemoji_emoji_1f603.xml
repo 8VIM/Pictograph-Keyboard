@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:viewportWidth="45"
+    android:viewportHeight="45"
+    android:width="45dp"
+    android:height="45dp">
+    <group
+        android:scaleX="1.25"
+        android:scaleY="-1.25"
+        android:translateY="45">
+        <group>
+            <clip-path
+                android:pathData="M0 36L36 36 36 0 0 0 0 36Z" />
+            <group
+                android:translateX="36"
+                android:translateY="18">
+                <path
+                    android:pathData="M0 0c0 -9.941 -8.059 -18 -18 -18 -9.94 0 -18 8.059 -18 18 0 9.94 8.06 18 18 18C-8.059 18 0 9.94 0 0"
+                    android:fillColor="#ffcc4d" />
+            </group>
+            <group
+                android:translateX="14"
+                android:translateY="23.5">
+                <path
+                    android:pathData="M0 0C0 -2.486 -1.119 -5.5 -2.5 -5.5 -3.881 -5.5 -5 -2.486 -5 0 -5 2.485 -3.881 5.5 -2.5 5.5 -1.119 5.5 0 2.485 0 0"
+                    android:fillColor="#664500" />
+            </group>
+            <group
+                android:translateX="27"
+                android:translateY="23.5">
+                <path
+                    android:pathData="M0 0C0 -2.486 -1.119 -5.5 -2.5 -5.5 -3.881 -5.5 -5 -2.486 -5 0 -5 2.485 -3.881 5.5 -2.5 5.5 -1.119 5.5 0 2.485 0 0"
+                    android:fillColor="#664500" />
+            </group>
+            <group
+                android:translateX="18"
+                android:translateY="14">
+                <path
+                    android:pathData="M0 0c-3.623 0 -6.027 0.422 -9 1 -0.679 0.131 -2 0 -2 -2 0 -4 4.595 -9 11 -9 6.404 0 11 5 11 9C11 1 9.679 1.132 9 1 6.027 0.422 3.623 0 0 0"
+                    android:fillColor="#664500" />
+            </group>
+            <group
+                android:translateX="9"
+                android:translateY="13">
+                <path
+                    android:pathData="M0 0c0 0 3 -1 9 -1 6 0 9 1 9 1 0 0 -2 -4 -9 -4 -7 0 -9 4 -9 4"
+                    android:fillColor="#ffffff" />
+            </group>
+        </group>
+    </group>
+</vector>

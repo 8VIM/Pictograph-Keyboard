@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:viewportWidth="45"
+    android:viewportHeight="45"
+    android:width="45dp"
+    android:height="45dp">
+    <group
+        android:scaleX="1.25"
+        android:scaleY="-1.25"
+        android:translateY="45">
+        <group
+            android:translateX="28.8918"
+            android:translateY="9.1921">
+            <path
+                android:pathData="M0 0L-1.725 4.39 0.824 11.05 1.235 9.975 0 0Zm-5.392 -5.192l2.216 5.79 2.216 -5.79 -4.432 0zM-9.44 4.39L-7.034 10.678 -4.627 4.39 -7.034 -1.736 -9.44 4.39Zm-3.668 -9.582l2.216 5.79 2.216 -5.79 -4.432 0zm-4.048 9.582l2.406 6.288 2.407 -6.288 -2.407 -6.126 -2.406 6.126zm-3.667 -9.582l2.215 5.79 2.216 -5.79 -4.431 0zm-2.111 15.389l0.326 0.853 2.549 -6.66 -1.573 -4.004 -1.302 9.811zm4.184 10.933l2.599 -6.791 -2.457 -6.254 -2.601 6.62 2.459 6.425zm7.858 -0.371l2.457 -6.42 -2.457 -6.254 -2.457 6.254 2.457 6.42zm7.858 0.371l2.459 -6.425 -2.601 -6.62 -2.457 6.254 2.599 6.791zm5.642 1.678l-1.784 -4.542 -1.784 4.542 -4.148 0 -1.926 -4.903 -1.926 4.903 -3.863 0 -1.927 -4.903 -1.926 4.903 -4.147 0 -1.785 -4.542 -1.784 4.542 -2.366 0 3.735 -28.013 24.263 0 3.735 28.013 -2.367 0z"
+                android:fillColor="#9aaab4" />
+        </group>
+        <group>
+            <clip-path
+                android:pathData="M0 36L36 36 36 0 0 0 0 36Z" />
+            <group
+                android:translateX="32"
+                android:translateY="2">
+                <path
+                    android:pathData="M0 0c0 1.104 -0.895 2 -2 2l-24 0c-1.104 0 -2 -0.896 -2 -2 0 -1.104 0.896 -2 2 -2l24 0c1.105 0 2 0.896 2 2"
+                    android:fillColor="#67757f" />
+            </group>
+            <group
+                android:translateX="36"
+                android:translateY="34">
+                <path
+                    android:pathData="M0 0c0 1.105 -0.895 2 -2 2l-32 0c-1.104 0 -2 -0.895 -2 -2 0 -1.104 0.896 -2 2 -2l32 0c1.105 0 2 0.896 2 2"
+                    android:fillColor="#67757f" />
+            </group>
+        </group>
+    </group>
+</vector>
