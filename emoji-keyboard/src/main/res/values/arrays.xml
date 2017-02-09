@@ -4,12 +4,14 @@
         <item>@string/setting_change_icon_set_entry_emojione</item>
         <item>@string/setting_change_icon_set_entry_emojione_bw</item>
         <item>@string/setting_change_icon_set_entry_google_noto</item>
+        <item>@string/setting_change_icon_set_entry_twemoji</item>
     </string-array>
 
     <string-array name="emojiIconsCategoryValues">
         <item>@string/setting_change_icon_set_value_emojione</item>
         <item>@string/setting_change_icon_set_value_emojione_bw</item>
         <item>@string/setting_change_icon_set_value_google_noto</item>
+        <item>@string/setting_change_icon_set_value_twemoji</item>
     </string-array>
 
 </resources>

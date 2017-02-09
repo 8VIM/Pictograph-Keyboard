@@ -14,6 +14,7 @@ The current version of that app is a single keyboard, and can be downloaded from
 - [orhanobut](https://github.com/orhanobut) for his efforts in the project [Logger](https://github.com/orhanobut/logger).
 - [EmojiOne](https://emojione.com) for creating free and open source Emoji's for the community.
 - [googlei18n](https://github.com/googlei18n) for providing the free png resources for [Noto-Emoji](https://github.com/googlei18n/noto-emoji).
+- [twitter](https://github.com/twitter) for sharing the twitter emoji ([twemoji](https://github.com/twitter/twemoji)) with the community.
 - [simpleicon](http://www.flaticon.com/authors/simpleicon) whose few icons I have copied over to this project for use. 
 - [Material-Icons](https://material.io/icons/) made available by google for general purpose use.
 
