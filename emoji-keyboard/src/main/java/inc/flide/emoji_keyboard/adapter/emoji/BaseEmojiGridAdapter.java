@@ -16,6 +16,7 @@ import inc.flide.emoji_keyboard.constants.EmojiCategory;
 import inc.flide.emoji_keyboard.utilities.Emoji;
 import inc.flide.emoji_keyboard.onclicklisteners.EmojiOnClickListner;
 import inc.flide.emoji_keyboard.onclicklisteners.EmojiOnLongClickListner;
+import inc.flide.emoji_keyboard.view.KeyboardView;
 
 public abstract class BaseEmojiGridAdapter extends BaseAdapter {
 
@@ -71,7 +72,7 @@ public abstract class BaseEmojiGridAdapter extends BaseAdapter {
         }
 
         imageView.setImageResource(getIconIdBasedOnEmoji(emoji));
-        imageView.setBackgroundResource(R.drawable.emoji_button_selector);
+        KeyboardView.setBackgroundDrawableForViewQbject(imageView, R.drawable.emoji_button_selector);
 
         return imageView;
     }

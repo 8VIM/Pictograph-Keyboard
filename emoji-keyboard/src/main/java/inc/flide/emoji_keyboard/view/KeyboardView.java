@@ -3,6 +3,7 @@ package inc.flide.emoji_keyboard.view;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v4.view.ViewPager;
@@ -23,6 +24,8 @@ import inc.flide.emoji_keyboard.constants.Constants;
 import inc.flide.emoji_keyboard.onclicklisteners.LongButtonPressRunnable;
 
 public class KeyboardView extends View implements SharedPreferences.OnSharedPreferenceChangeListener{
+
+    public static final int SDK_LEVEL = android.os.Build.VERSION.SDK_INT;
 
     private LinearLayout keyboardLayout;
 
@@ -91,8 +94,14 @@ public class KeyboardView extends View implements SharedPreferences.OnSharedPref
         setupToogleLennyFacesAndEmojiKeyboard();
     }
 
+    public static void setBackgroundDrawableForViewQbject(final View view, final int resourceId) {
+        if(SDK_LEVEL >= Build.VERSION_CODES.KITKAT) {
+            view.setBackgroundResource(resourceId);
+        }
+    }
     private void setupToogleLennyFacesAndEmojiKeyboard() {
         final ImageButton toogleLennyFacesAndEmojiKeyboardButton = (ImageButton) keyboardLayout.findViewById(R.id.toggleLennyFacesAndEmojiKeyboardButton);
+        setBackgroundDrawableForViewQbject(toogleLennyFacesAndEmojiKeyboardButton, R.drawable.emoji_button_selector);
 
         if(isEmojiKeyboardVisible) {
             toogleLennyFacesAndEmojiKeyboardButton.setImageResource(R.drawable.key_icon_switch_to_lenny_faces);
@@ -123,6 +132,7 @@ public class KeyboardView extends View implements SharedPreferences.OnSharedPref
 
     private void setupGoToSettingsButton() {
         final ImageButton openSettingsButton = (ImageButton) keyboardLayout.findViewById(R.id.openSettingsButton);
+        setBackgroundDrawableForViewQbject(openSettingsButton, R.drawable.emoji_button_selector);
 
         openSettingsButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -137,6 +147,7 @@ public class KeyboardView extends View implements SharedPreferences.OnSharedPref
     private void setupEnterButton() {
 
         final ImageButton enterButon = (ImageButton) keyboardLayout.findViewById(R.id.enterButton);
+        setBackgroundDrawableForViewQbject(enterButon, R.drawable.emoji_button_selector);
 
         enterButon.setOnClickListener(new OnClickListener() {
             @Override
@@ -158,6 +169,7 @@ public class KeyboardView extends View implements SharedPreferences.OnSharedPref
     private void setupSpacebarButton() {
 
         final ImageButton spacebarButton = (ImageButton) keyboardLayout.findViewById(R.id.spaceBarButton);
+        setBackgroundDrawableForViewQbject(spacebarButton, R.drawable.emoji_button_selector);
 
         spacebarButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -178,6 +190,7 @@ public class KeyboardView extends View implements SharedPreferences.OnSharedPref
     private void setupDeleteButton() {
 
         final ImageButton deleteButton = (ImageButton) keyboardLayout.findViewById(R.id.deleteButton);
+        setBackgroundDrawableForViewQbject(deleteButton, R.drawable.emoji_button_selector);
 
         deleteButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -200,6 +213,7 @@ public class KeyboardView extends View implements SharedPreferences.OnSharedPref
     private void setupKeyboardButton() {
 
         ImageButton keyboardButton = (ImageButton) keyboardLayout.findViewById(R.id.switchToKeyboardButton);
+        setBackgroundDrawableForViewQbject(keyboardButton, R.drawable.emoji_button_selector);
 
         keyboardButton.setOnClickListener(new OnClickListener() {
             @Override
