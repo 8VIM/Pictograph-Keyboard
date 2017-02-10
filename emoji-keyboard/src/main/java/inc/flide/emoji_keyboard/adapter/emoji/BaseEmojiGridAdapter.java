@@ -1,4 +1,4 @@
-package inc.flide.emoji_keyboard.adapter;
+package inc.flide.emoji_keyboard.adapter.emoji;
 
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;

@@ -13,7 +13,7 @@ import java.util.List;
 
 import inc.flide.emojiKeyboard.R;
 import inc.flide.emoji_keyboard.InputMethodServiceProxy;
-import inc.flide.emoji_keyboard.adapter.BaseEmojiGridAdapter;
+import inc.flide.emoji_keyboard.adapter.emoji.BaseEmojiGridAdapter;
 import inc.flide.emoji_keyboard.utilities.CategorizedEmojiList;
 import inc.flide.emoji_keyboard.utilities.Emoji;
 

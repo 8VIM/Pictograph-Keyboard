@@ -1,4 +1,4 @@
-package inc.flide.emoji_keyboard.adapter;
+package inc.flide.emoji_keyboard.adapter.unicode_art;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
@@ -11,9 +11,9 @@ import java.util.List;
 
 import inc.flide.emoji_keyboard.InputMethodServiceProxy;
 import inc.flide.emoji_keyboard.utilities.Utility;
-import inc.flide.emoji_keyboard.view.AsciiArtKeyboardSinglePageView;
+import inc.flide.emoji_keyboard.view.UnicodeArtKeyboardSinglePageView;
 
-public class AsciiArtPagerAdapter extends PagerAdapter {
+public class UnicodeArtPagerAdapter extends PagerAdapter {
 
     public final String[] TITLES = {"Joy",
                                     "Flip off",
@@ -33,7 +33,7 @@ public class AsciiArtPagerAdapter extends PagerAdapter {
 
     private final List<List<String>> listOfAsciiArtLists = new ArrayList<>();
 
-    public AsciiArtPagerAdapter(Context context, ViewPager pager) {
+    public UnicodeArtPagerAdapter(Context context, ViewPager pager) {
         super();
 
         this.pager = pager;
@@ -56,8 +56,8 @@ public class AsciiArtPagerAdapter extends PagerAdapter {
 
         for(List<String> list: listOfAsciiArtLists) {
             pages.add(
-                    new AsciiArtKeyboardSinglePageView(
-                            context , new BaseAsciiArtAdapter(
+                    new UnicodeArtKeyboardSinglePageView(
+                            context , new UnicodeArtStaggeredGridAdapter(
                                         (InputMethodServiceProxy) context, list))
                     .getView()
             );

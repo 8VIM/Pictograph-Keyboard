@@ -1,9 +1,9 @@
-package inc.flide.emoji_keyboard.adapter;
+package inc.flide.emoji_keyboard.adapter.emoji;
 
 import android.content.Context;
 
 import inc.flide.emoji_keyboard.InputMethodServiceProxy;
-import inc.flide.emoji_keyboard.constants.EmojiCategory;
+import inc.flide.emoji_keyboard.adapter.emoji.BaseEmojiGridAdapter;
 import inc.flide.emoji_keyboard.sqlite.EmojiDataSource;
 
 public class RecentEmojiGridAdapter extends BaseEmojiGridAdapter {

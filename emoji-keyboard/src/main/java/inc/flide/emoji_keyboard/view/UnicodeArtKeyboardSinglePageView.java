@@ -5,16 +5,16 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 
-import inc.flide.emoji_keyboard.adapter.BaseAsciiArtAdapter;
+import inc.flide.emoji_keyboard.adapter.unicode_art.UnicodeArtStaggeredGridAdapter;
 
 import static android.support.v7.widget.StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS;
 
-public class AsciiArtKeyboardSinglePageView {
+public class UnicodeArtKeyboardSinglePageView {
 
     private final Context context;
-    private final RecyclerView.Adapter<BaseAsciiArtAdapter.AsciiArtViewHolder> adapter;
+    private final RecyclerView.Adapter<UnicodeArtStaggeredGridAdapter.unicodeArtViewHolder> adapter;
 
-    public AsciiArtKeyboardSinglePageView(Context context, RecyclerView.Adapter<BaseAsciiArtAdapter.AsciiArtViewHolder> adapter) {
+    public UnicodeArtKeyboardSinglePageView(Context context, RecyclerView.Adapter<UnicodeArtStaggeredGridAdapter.unicodeArtViewHolder> adapter) {
         this.context = context;
         this.adapter = adapter;
     }

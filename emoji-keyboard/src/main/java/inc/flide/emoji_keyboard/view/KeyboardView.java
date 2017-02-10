@@ -17,8 +17,8 @@ import com.astuetz.PagerSlidingTabStrip;
 
 import inc.flide.emojiKeyboard.R;
 import inc.flide.emoji_keyboard.InputMethodServiceProxy;
-import inc.flide.emoji_keyboard.adapter.EmojiPagerAdapter;
-import inc.flide.emoji_keyboard.adapter.AsciiArtPagerAdapter;
+import inc.flide.emoji_keyboard.adapter.emoji.EmojiPagerAdapter;
+import inc.flide.emoji_keyboard.adapter.unicode_art.UnicodeArtPagerAdapter;
 import inc.flide.emoji_keyboard.constants.Constants;
 import inc.flide.emoji_keyboard.onclicklisteners.LongButtonPressRunnable;
 
@@ -65,7 +65,7 @@ public class KeyboardView extends View implements SharedPreferences.OnSharedPref
         ViewPager lennyFaceViewPager = (ViewPager) keyboardLayout.findViewById(R.id.lennyFaceKeyboardViewPager);
         PagerSlidingTabStrip lennyFacePagerSlidingTabStrip = (PagerSlidingTabStrip) keyboardLayout.findViewById(R.id.lennyFaceKeyboardPagerSlidingTabStrip);
         lennyFacePagerSlidingTabStrip.setIndicatorColor(getResources().getColor(R.color.pallet_1_colour_2));
-        AsciiArtPagerAdapter lennyFacePagerAdapter = new AsciiArtPagerAdapter(context, lennyFaceViewPager);
+        UnicodeArtPagerAdapter lennyFacePagerAdapter = new UnicodeArtPagerAdapter(context, lennyFaceViewPager);
         lennyFaceViewPager.setAdapter(lennyFacePagerAdapter);
         lennyFacePagerSlidingTabStrip.setViewPager(lennyFaceViewPager);
         lennyFaceViewPager.setCurrentItem(0);
