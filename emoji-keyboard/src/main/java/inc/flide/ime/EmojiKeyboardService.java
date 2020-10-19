@@ -89,7 +89,7 @@ public class EmojiKeyboardService extends InputMethodService implements InputMet
         sendUpKeyEvent(keyEventCode, flags);
     }
 
-    public void switchToPreviousInputMethod() {
+    public void switchToLastInputMethod() {
 
         try {
             previousInputMethodManager.switchToLastInputMethod(iBinder);

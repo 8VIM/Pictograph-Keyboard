@@ -5,7 +5,7 @@ import android.content.Context;
 public interface InputMethodServiceProxy {
     void sendDownAndUpKeyEvent(int keyCode, int flags);
 
-    void switchToPreviousInputMethod();
+    void switchToLastInputMethod();
 
     void sendText(String unicodeJavaString);
 

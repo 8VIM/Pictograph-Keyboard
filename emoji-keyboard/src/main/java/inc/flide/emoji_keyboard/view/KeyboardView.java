@@ -218,7 +218,7 @@ public class KeyboardView extends View implements SharedPreferences.OnSharedPref
         keyboardButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                emojiKeyboardService.switchToPreviousInputMethod();
+                emojiKeyboardService.switchToLastInputMethod();
             }
         });
     }
